@@ -22,7 +22,7 @@ import com.rays.pro4.Util.ServletUtility;
 //TODO: Auto-generated Javadoc
 /**
 * The Class CourseCtl.
-*  @authorPrakhar Solanki
+*  @author Prakhar Solanki
 */
 @WebServlet(name="CourseCtl", urlPatterns={"/ctl/CourseCtl"})
 public class CourseCtl extends BaseCtl{

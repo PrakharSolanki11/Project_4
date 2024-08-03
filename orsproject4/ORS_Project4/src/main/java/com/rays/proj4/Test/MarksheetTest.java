@@ -12,7 +12,7 @@ import com.rays.pro4.Model.MarksheetModel;
 
 /**
  * Marksheet Model Test classes.
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class MarksheetTest {

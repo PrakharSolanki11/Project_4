@@ -25,7 +25,7 @@ import com.rays.pro4.Util.ServletUtility;
 /**
  * The Class CourseListCtl.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  */
 @WebServlet(name = "CourseListCtl", urlPatterns = { "/ctl/CourseListCtl" })
 

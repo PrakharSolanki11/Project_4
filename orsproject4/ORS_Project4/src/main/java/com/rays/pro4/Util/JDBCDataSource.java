@@ -10,7 +10,7 @@ import com.rays.pro4.Exception.ApplicationException;
 /**
  * JDBC DataSource is a Data Connection Pool.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public final class JDBCDataSource {

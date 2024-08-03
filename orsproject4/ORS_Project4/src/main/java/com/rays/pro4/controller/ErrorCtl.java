@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import com.rays.pro4.Util.ServletUtility;
 
 /**
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class ErrorCtl extends BaseCtl {

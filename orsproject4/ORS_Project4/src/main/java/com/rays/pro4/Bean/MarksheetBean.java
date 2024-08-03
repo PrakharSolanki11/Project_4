@@ -3,7 +3,7 @@ package com.rays.pro4.Bean;
 /**
  * Marksheet JavaBean encapsulates Marksheet attributes.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class MarksheetBean extends BaseBean{

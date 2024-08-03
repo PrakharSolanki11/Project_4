@@ -4,7 +4,7 @@ package com.rays.pro4.Exception;
  * DatabaseException is propogated by Model classes when an unhandled Database
  * exception occurred.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 

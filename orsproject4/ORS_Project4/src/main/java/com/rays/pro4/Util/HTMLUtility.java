@@ -1,6 +1,6 @@
  package com.rays.pro4.Util;
 
-import java.util.Collections;
+import java.util.Collections; 
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.rays.pro4.Model.BaseModel;
 /**
  *  HTML Utility class to produce HTML contents like Dropdown List.
  *  
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class HTMLUtility {
@@ -23,7 +23,7 @@ public class HTMLUtility {
             HashMap<String, String> map) {
 
         StringBuffer sb = new StringBuffer(
-                "<select style='width: 210px;  height: 23px;' class='form-control' name='" + name + "'>");
+                "<select style='width: 219px;  height: 23px;' class='form-control' name='" + name + "'>");
 
         Set<String> keys = map.keySet();
         String val = null;
@@ -31,7 +31,7 @@ public class HTMLUtility {
         boolean select=true;
         if (select)
         {
-        	sb.append("<option style='width: 210px;  height: 30px;' selected value=''>--------------Select--------------------`</option>");
+        	sb.append("<option style='width: 219px;  height: 30px;' selected value=''>--------------Select--------------------`</option>");
         }
 
         for (String key : keys) {
@@ -64,7 +64,7 @@ public class HTMLUtility {
         boolean select=true;
         if (select)
         {
-        	sb.append("<option style='width: 210px;  height: 30px;' selected value=''>--------------Select---------------</option>");
+        	sb.append("<option style='width: 210px;  height: 30px;' selected value=''>----------------------Select---------------</option>");
         }
 
         

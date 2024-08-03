@@ -17,7 +17,7 @@ import com.rays.pro4.Util.JDBCDataSource;
 /**
  * JDBC Implementation of CourseModel.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class CourseModel {

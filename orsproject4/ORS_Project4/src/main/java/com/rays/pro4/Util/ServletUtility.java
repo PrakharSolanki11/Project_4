@@ -19,7 +19,7 @@ import com.rays.pro4.controller.ORSView;
  * redirect, handle generic exception, manage success and error message, manage
  * default Bean and List, manage pagination parameters.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class ServletUtility {

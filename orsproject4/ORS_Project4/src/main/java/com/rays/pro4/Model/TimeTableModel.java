@@ -21,7 +21,7 @@ import com.rays.pro4.Util.JDBCDataSource;
 /**
  * The Class TimeTableModel.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class TimeTableModel {

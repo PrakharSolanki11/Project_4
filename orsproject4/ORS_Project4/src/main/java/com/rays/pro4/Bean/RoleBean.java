@@ -3,7 +3,7 @@ package com.rays.pro4.Bean;
 /**
  * Role JavaBean encapsulates Role attributes.
  * 
- * @authorPrakhar Solanki
+ * @author Prakhar Solanki
  *
  */
 public class RoleBean extends BaseBean {
