@@ -52,7 +52,7 @@ public class ProductModel {
 		pstmt.setString(5, bean.getProductCategory());
 
 		int i = pstmt.executeUpdate();
-		System.out.println("Product Add Successfully " + i);
+		System.out.println("Product Added Successfully " + i);
 		conn.commit();
 		pstmt.close();
 
@@ -70,7 +70,7 @@ public class ProductModel {
 		pstmt.setLong(1, bean.getId());
 
 		int i = pstmt.executeUpdate();
-		System.out.println("Product delete successfully " + i);
+		System.out.println("Product deleted successfully " + i);
 		conn.commit();
 
 		pstmt.close();

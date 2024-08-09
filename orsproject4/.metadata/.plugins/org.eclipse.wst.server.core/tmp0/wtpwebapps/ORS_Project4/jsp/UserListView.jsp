@@ -96,7 +96,7 @@
 
 						<label>dob</font> :
 					</label><input type="text" name="dob" id="udate" readonly="readonly"
-						size="25" placeholder="Enter Dob "
+						 placeholder="Enter Dob "
 						value="<%=ServletUtility.getParameter("dob", request)%>">
 
 						<input type="submit" name="operation"
