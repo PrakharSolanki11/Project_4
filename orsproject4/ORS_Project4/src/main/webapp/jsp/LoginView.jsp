@@ -31,7 +31,7 @@
 				</font>
 			</H2>
 			<h2>
-				<font color="green"> <%=ServletUtility.getSuccessMessage(request)%></font>
+				<font color="limegreen"> <%=ServletUtility.getSuccessMessage(request)%></font>
 			</h2>
 
 			<input type="hidden" name="id" value="<%=bean.getId()%>"> <input
@@ -45,14 +45,14 @@
 
 			<table>
 				<tr>
-					<th>LoginId <font color="red">*</font></th>
+					<th>LoginId<font color="red">&#42</font></th>
 					<td><input type="text" name="login" size=30
 						placeholder="Enter valid Email-Id"
 						value="<%=DataUtility.getStringData(bean.getLogin())%>"><font
 						style="position: fixed" color="red"> <%=ServletUtility.getErrorMessage("login", request)%></font></td>
 				</tr>
 				<tr>
-					<th>Password<font color="red">*</font></th>
+					<th>Password<font color="red">&#42</font></th>
 					<td><input type="password" name="password" size=30
 						placeholder="Enter Password"
 						value="<%=DataUtility.getStringData(bean.getPassword())%>"><font
@@ -61,8 +61,8 @@
 				<tr>
 					<th></th>
 					<td colspan="2"><input type="submit" name="operation"
-						value="<%=LoginCtl.OP_SIGN_IN%>"> &nbsp; <input
-						type="submit" name="operation" value="<%=LoginCtl.OP_SIGN_UP%>">
+						value="<%=LoginCtl.OP_SIGN_IN%>"> &nbsp; 
+						<input type="submit" name="operation" value="<%=LoginCtl.OP_SIGN_UP%>">
 						&nbsp;</td>
 				</tr>
 				<tr>

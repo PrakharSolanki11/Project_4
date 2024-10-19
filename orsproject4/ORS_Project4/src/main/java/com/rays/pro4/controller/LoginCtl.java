@@ -26,6 +26,13 @@ import com.rays.pro4.Util.ServletUtility;
  * 
  * @author Prakhar Solanki
  */
+
+/**
+ * New JAVA DOC Created....
+ * 
+ * @author HP
+ *
+ */
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
 	private static final long serialVersionUID = 1L;
@@ -134,7 +141,7 @@ public class LoginCtl extends BaseCtl {
 
 				bean = model.authenticate(bean.getLogin(), bean.getPassword());
 
-				String str = request.getParameter("URI");
+				String uri = request.getParameter("URI");
 
 				if (bean != null) {
 					session.setAttribute("user", bean);
@@ -146,11 +153,11 @@ public class LoginCtl extends BaseCtl {
 						session.setAttribute("role", rolebean.getName());
 					}
 
-					if ("null".equalsIgnoreCase(str)) {
+					if ("null".equalsIgnoreCase(uri)) {
 						ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
 						return;
 					} else {
-						ServletUtility.redirect(str, request, response);
+						ServletUtility.redirect(uri, request, response);
 						return;
 					}
 

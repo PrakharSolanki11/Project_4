@@ -59,7 +59,7 @@
                     <th align="left">Gender</th>
                     <td>
                     <input type=" text" name="gender" value="<%= DataUtility.getStringData(bean.getGender())%>">
-                        <%-- <%
+                       <%--  <%
                             HashMap map = new HashMap();
                             map.put("M", "Male");
                             map.put("F", "Female");

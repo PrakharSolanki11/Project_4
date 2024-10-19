@@ -1,0 +1,10 @@
+
+Sep 24, 2024 13:52:24.83 NEW SESSION
+Sep 24, 2024 13:52:24.83 Created TensorFlow Lite XNNPACK delegate for CPU.
+Sep 24, 2024 13:52:34.72 Attempting to use a delegate that only supports static-sized tensors with a graph that has dynamic-sized tensors (tensor#58 is a dynamic-sized tensor).
+Sep 24, 2024 14:22:04.13 [4260:25032:0924/142204.134:ERROR:connection_factory_impl.cc(483)] ConnectionHandler failed with net error: -2
+Sep 24, 2024 14:22:04.19 [4260:25032:0924/142204.197:ERROR:connection_factory_impl.cc(434)] Failed to connect to MCS endpoint with error -109
+
+Oct 07, 2024 11:38:10.62 NEW SESSION
+Oct 07, 2024 11:38:10.62 [26072:6576:1007/113810.622:ERROR:registration_request.cc(291)] Registration response error message: DEPRECATED_ENDPOINT
+Oct 07, 2024 11:38:11.78 Created TensorFlow Lite XNNPACK delegate for CPU.

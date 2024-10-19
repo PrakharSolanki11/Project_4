@@ -1,0 +1,10 @@
+127.0.0.1 - - [02/Sep/2024:15:46:54 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:15:46:55 +0530] "GET /ORS_Project4/ HTTP/1.1" 200 520
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:15:46:56 +0530] "GET /ORS_Project4/WelcomeCtl HTTP/1.1" 200 1063
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:15:46:59 +0530] "GET /ORS_Project4/LoginCtl HTTP/1.1" 200 2302
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:15:47:00 +0530] "POST /ORS_Project4/LoginCtl HTTP/1.1" 200 2342
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:16:11:30 +0530] "GET /ORS_Project4/WelcomeCtl HTTP/1.1" 200 1063
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:16:11:31 +0530] "GET /ORS_Project4/LoginCtl HTTP/1.1" 200 2302
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:16:14:04 +0530] "GET /ORS_Project4/WelcomeCtl HTTP/1.1" 200 1063
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:16:23:53 +0530] "GET /ORS_Project4/LoginCtl HTTP/1.1" 200 2302
+0:0:0:0:0:0:0:1 - - [02/Sep/2024:16:23:58 +0530] "GET /ORS_Project4/LoginCtl HTTP/1.1" 200 2302

@@ -62,14 +62,16 @@ public class EmailUtility {
 	 */
 	static {
 		props.put("mail.smtp.host", SMTP_HOST_NAME);
-		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
+		props.put("mail.smtp.auth", "true");
 		props.put("mail.debug", "true");
 		props.put("mail.smtp.port", SMTP_PORT);
 		props.put("mail.smtp.socketFactory.port", SMTP_PORT);
 		props.put("mail.smtp.socketFactory.class", SSL_FACTORY);
-		props.put("mail.smtp.socketFactory.fallback", "false");
+		props.put("mail.smtp.socketFactory.fallback", "false"); 
+		
+		
 	}
 
 	/**
@@ -92,7 +94,9 @@ public class EmailUtility {
 			// Make debug mode true to display debug messages at console
 			session.setDebug(true);
 
-			// Create a message
+			// Create a message 
+			
+			System.out.println("+++++++++++++ Send mail method +++++++++++++++");
 			Message msg = new MimeMessage(session);
 			InternetAddress addressFrom = new InternetAddress(emailFromAddress);
 			msg.setFrom(addressFrom);
@@ -162,12 +166,15 @@ public class EmailUtility {
 
 			}
 
+			System.out.println("Email SEnd mail method +++++++++++++++++++++");
+			System.out.println(msg); 
+
 			// Send the mail
 			Transport.send(msg);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			throw new ApplicationException("Email " + ex.getMessage());
+			//throw new ApplicationException("Email " + ex.getMessage());
 		}
 	}
 

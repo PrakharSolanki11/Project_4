@@ -12,17 +12,20 @@ import com.rays.pro4.Exception.ApplicationException;
  * 
  * @author Prakhar Solanki
  *
- */
+ */ 
+
+//MAKE CLASS FINAL SO THAT CHILD CANT BE CREATED.
 public final class JDBCDataSource {
 
 	/**
 	 * JDBC Database connection pool ( DCP )
 	 */
-
+    // MAKE DEFAULT CONSTRUCTOR PRIVATE SO THAT NO ONE OTHER CLASS CAN INSTANTIATE SINGLETONE CLASS.
 	private JDBCDataSource() {
 	}
-
-	private static JDBCDataSource datasource;
+    
+	// MAKE A PRIVATE STATIC VARIABLE OF SELFTYPE SO THAT WILL HAVE ONLY ONE COPY IN THEIR LIFETIME.
+	private static JDBCDataSource datasource ;
 
 	private ComboPooledDataSource cpds = null;
 
@@ -30,7 +33,9 @@ public final class JDBCDataSource {
 	 * Create instance of Connection Pool
 	 *
 	 * @return
-	 */
+	 */ 
+	
+	// MAKE GETINSTANCE STATIC METHOD SO THAT WILL RETURN INSTANCE OF SAME SINGLETONE CLASS.
 	public static JDBCDataSource getInstance() {
 		if (datasource == null) {
 

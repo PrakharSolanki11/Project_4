@@ -1,4 +1,4 @@
-package com.rays.pro4.controller;
+																																																		package com.rays.pro4.controller;
 
 import java.io.IOException;
 
@@ -109,6 +109,7 @@ public class ForgetPasswordCtl extends BaseCtl {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		log.debug("ForgetPasswordCtl Method doPost Started");
+		System.out.println("====================================");
  
 		String op = DataUtility.getString(request.getParameter("operation"));
 		UserBean bean = (UserBean) populateBean(request);

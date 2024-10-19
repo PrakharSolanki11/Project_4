@@ -24,6 +24,7 @@ import com.rays.pro4.Util.ServletUtility;
  * 
  * @author Prakhar Solanki
  */
+//wildcard mapping
 @WebFilter(filterName = "FrontCtl", urlPatterns = { "/ctl/*", "/doc/*" })
 public class FrontControler implements Filter {
 

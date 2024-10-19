@@ -47,8 +47,8 @@ public class UserCtl extends BaseCtl {
 		System.out.println("uctl preload");
 		RoleModel model = new RoleModel();
 		try {
-			List l = model.list();
-			request.setAttribute("roleList", l);
+			List rlist = model.list();
+			request.setAttribute("roleList", rlist);
 		} catch (ApplicationException e) {
 			log.error(e);
 		}
@@ -156,6 +156,11 @@ public class UserCtl extends BaseCtl {
 	 * HttpServletRequest)
 	 */
 
+	
+	
+	/**
+	 *  This is Populate Bean
+	 */
 	protected BaseBean populateBean(HttpServletRequest request) {
 		System.out.println(" uctl Base bean P bean");
 		log.debug("UserCtl Method populatebean Started");
@@ -299,7 +304,7 @@ public class UserCtl extends BaseCtl {
 		} else if (OP_CANCEL.equalsIgnoreCase(op)) {
 			System.out.println(" U  ctl Do post 77777");
 
-			ServletUtility.redirect(ORSView.USER_CTL, request, response);
+			ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);

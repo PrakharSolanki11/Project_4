@@ -184,8 +184,14 @@ public class TimeTableListCtl extends BaseCtl{
 						ServletUtility.redirect(ORSView.TIMETABLE_CTL, request, response);
 						return ;
 					}
+			        
+					else if ( OP_BACK.equalsIgnoreCase(op))
+					{
+						ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
+						return;
+					}
 					
-					else if (OP_RESET.equalsIgnoreCase(op)||OP_BACK.equalsIgnoreCase(op)) {
+					else if (OP_RESET.equalsIgnoreCase(op)) {
 						ServletUtility.redirect(ORSView.TIMETABLE_LIST_CTL, request, response);
 						return;
 					}

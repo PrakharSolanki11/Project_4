@@ -1,0 +1,17 @@
+package com.rays.pro4.Bean;
+
+
+
+
+public class NewMarksheetBean  {
+
+		private String rollNo;
+		private long studentId;
+		private String name;
+		private int phy;
+		private int chem;
+		private int maths;
+	
+	
+
+}

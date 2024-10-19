@@ -50,7 +50,7 @@
 				<h1>User List</h1>
 				<h3>
 					<font color="red"><%=ServletUtility.getErrorMessage(request)%></font>
-					<font color="green"><%=ServletUtility.getSuccessMessage(request)%></font>
+					<font color="limegreen"><%=ServletUtility.getSuccessMessage(request)%></font>
 				</h3>
 
 			</div>
@@ -58,7 +58,7 @@
 			<%
 				List rlist = (List) request.getAttribute("RoleList");
 
-				List ulist = (List) request.getAttribute("LoginId");
+				List ulist = (List) request.getAttribute("Dob");
 
 				int next = DataUtility.getInt(request.getAttribute("nextlist").toString());
 			%>
@@ -82,9 +82,10 @@
 						value="<%=ServletUtility.getParameter("firstName", request)%>">
 
 						<label></font> </label> <%-- <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist) %> --%>
-
+						&nbsp;
 						<label>LoginId</font> :
-					</label> <input type="text" name="loginid" placeholder="Enter Login-Id"
+					</label> <input type="text" name="loginid"  placeholder="Enter Login-Id" 
+					    
 						value="<%=ServletUtility.getParameter("login", request)%>">
 						&emsp; <label>Role</font> :
 					</label> <%=HTMLUtility.getList("roleid", String.valueOf(bean.getRoleId()), rlist)%>
@@ -94,11 +95,11 @@
 						type="number" name="mobile" placeholder="Enter mobile no"
 						value="<%=ServletUtility.getParameter("mobile", request)%>"> --%>
 
-						<label>dob</font> :
-					</label><input type="text" name="dob" id="udate" readonly="readonly"
-						 placeholder="Enter Dob "
+						<label>Dob</font> :
+					</label> <input type="text" name="dob"  id="udate" placeholder="Enter Dob" readonly="readonly"
 						value="<%=ServletUtility.getParameter("dob", request)%>">
-
+					
+                         &nbsp;
 						<input type="submit" name="operation"
 						value="<%=UserListCtl.OP_SEARCH%>"> &nbsp; <input
 						type="submit" name="operation" value="<%=UserListCtl.OP_RESET%>">
@@ -109,7 +110,7 @@
 
 			<table border="1" width="100%" align="center" cellpadding=6px
 				cellspacing=".2">
-				<tr style="background: skyblue">
+				<tr style="background: orange">
 					<th><input type="checkbox" id="select_all" name="select">Select
 						All</th>
 

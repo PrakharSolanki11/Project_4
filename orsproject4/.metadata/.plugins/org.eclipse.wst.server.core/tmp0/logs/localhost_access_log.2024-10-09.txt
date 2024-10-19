@@ -1,0 +1,14 @@
+127.0.0.1 - - [09/Oct/2024:16:16:35 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:16:37 +0530] "GET /ORS_Project4/jsp/CustomerView.jsp HTTP/1.1" 500 2898
+127.0.0.1 - - [09/Oct/2024:16:21:27 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:28 +0530] "GET /ORS_Project4/ HTTP/1.1" 200 521
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:30 +0530] "GET /ORS_Project4/WelcomeCtl HTTP/1.1" 200 1063
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:32 +0530] "GET /ORS_Project4/LoginCtl HTTP/1.1" 200 2306
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:38 +0530] "POST /ORS_Project4/LoginCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:38 +0530] "GET /ORS_Project4/WelcomeCtl HTTP/1.1" 200 2894
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:41 +0530] "GET /ORS_Project4/ctl/CustomerCtl HTTP/1.1" 500 3838
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:21:48 +0530] "GET /ORS_Project4/ctl/CustomerCtl HTTP/1.1" 500 3838
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:29:25 +0530] "GET /ORS_Project4/ctl/CustomerCtl HTTP/1.1" 200 6233
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:29:25 +0530] "GET /resources/demos/style.css HTTP/1.1" 404 784
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:29:32 +0530] "POST /ORS_Project4/ctl/CustomerCtl HTTP/1.1" 200 6337
+0:0:0:0:0:0:0:1 - - [09/Oct/2024:16:29:32 +0530] "GET /resources/demos/style.css HTTP/1.1" 404 784

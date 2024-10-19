@@ -49,7 +49,7 @@
 					: DataUtility.getString(request.getParameter("oldPassword")))%>></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("oldPassword", request)%></font></td>
 				</tr>
-
+   
 				<tr>
 					<th align="left">New Password<span style="color: red">*</span></th>
 					<td align="center"><input type="password" name="newPassword"

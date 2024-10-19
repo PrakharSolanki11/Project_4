@@ -1,9 +1,11 @@
  package com.rays.pro4.Util;
 
-import java.util.Collections; 
+ 
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,13 +60,13 @@ public class HTMLUtility {
      */
  public static String getList(String name, String selectedVal, List list) {
 
-        Collections.sort(list);       
-        StringBuffer sb = new StringBuffer("<select style='width: 210px;  height: 23px;' class='form-control' name='" + name + "'>");
+        Collections.sort(list);      
+        StringBuffer sb = new StringBuffer("<select style='width: 219px;  height: 23px;' class='form-control' name='" + name + "'>");
 
         boolean select=true;
         if (select)
         {
-        	sb.append("<option style='width: 210px;  height: 30px;' selected value=''>------------------Select------------------</option>");
+        	sb.append("<option style='width: 219px;  height: 30px;' selected value=''>------------------Select------------------</option>");
         }
 
         
@@ -77,7 +79,9 @@ public class HTMLUtility {
 
         for (DropdownListBean obj : dd) {
             key = obj.getkey();
-            val = obj.getValue();
+            val = obj.getValue(); 
+            
+            System.out.println("this is key=="+key+"  this is val=="+val);
 
             if (key.trim().equals(selectedVal)) {
                 sb.append("<option selected value='"+ key +"'>" + val
@@ -118,6 +122,49 @@ public class HTMLUtility {
         }
         return msg;
     }
+    
+    
+    
+    
+    
+    
+    public static String getList2(String name, String selectedVal, Map<Integer, String> map) {
+
+		//	System.out.println(selectedVal + "hhhhhhhhhhhhhhhiiiiiiiiiiiiiiiiiiiiii--====");
+
+			StringBuffer sb = new StringBuffer(
+					"<select style='width: 219px;  height: 23px;' class='form-control' name='" + name + "'>");
+
+			Set<Integer> keys = map.keySet();
+			String val = null;
+			boolean select = true;
+			if (select) {
+
+				// Add placeholder option
+				sb.append(
+						"<option style='width: 219px;  height: 30px;' selected value=''>-------------------Select------------------</option>");
+			}
+
+			for (Integer key : keys) {
+				val = map.get(key);
+				// Convert key to String for comparison and value attribute
+				String keyString = key.toString();
+				//System.out.println(keyString + "12345678900000000000----===");
+
+				if (keyString.trim().equals(selectedVal)) {
+					//System.out.println(selectedVal + "12345677778899900--====");
+					// Mark the option as selected if it matches the selectedVal
+					sb.append("<option selected value='" + key + "'>" + val + "</option>");
+				} else {
+					sb.append("<option value='" + key + "'>" + val + "</option>");
+				}
+			}
+
+			sb.append("</select>");
+			System.out.println("get list 2=========" + sb.toString());
+
+			return sb.toString();
+			}
 
     /**
      * Creates submit button if user has access permission.

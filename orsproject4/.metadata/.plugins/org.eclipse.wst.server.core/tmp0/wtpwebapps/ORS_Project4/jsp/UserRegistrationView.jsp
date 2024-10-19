@@ -25,7 +25,7 @@
 		$("#udate").datepicker({
 			changeMonth : true,
 			changeYear : true,
-			yearRange : '1980:2024' ,
+			yearRange : '1980:2003' ,
 			
 		//  mindefaultDate : "01-01-1962"
 		});
@@ -34,8 +34,7 @@
 </head>
 <body>
 
-	<jsp:useBean id="bean" class="com.rays.pro4.Bean.UserBean"
-		scope="request"></jsp:useBean>
+	<jsp:useBean id="bean" class="com.rays.pro4.Bean.UserBean" scope="request"></jsp:useBean>
 	<%@include file="Header.jsp"%>
 
 	<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
@@ -53,7 +52,7 @@
 			<h1>User Registration</h1>
 
 			<H3>
-				<font color="green"> <%=ServletUtility.getSuccessMessage(request)%></font>
+				<font color="limegreen"> <%=ServletUtility.getSuccessMessage(request)%></font>
 			</H3>
 			<H3>
 				<font color="red"> <%=ServletUtility.getErrorMessage(request)%></font>

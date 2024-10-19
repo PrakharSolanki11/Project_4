@@ -211,6 +211,7 @@ public class TimeTableCtl extends BaseCtl{
 			return;
 		}
 		
+		
 	
 		ServletUtility.forward(getView(), request, response);
 	}

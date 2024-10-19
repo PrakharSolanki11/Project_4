@@ -49,7 +49,7 @@ public class UserListCtl extends BaseCtl{
 			List ulist = umodel.list(0,0);
 
 			request.setAttribute("RoleList", rlist);
-			request.setAttribute("LoginId", ulist);
+			request.setAttribute("Dob", ulist);
 
 		} catch (ApplicationException e) {
 			e.printStackTrace();
@@ -66,13 +66,18 @@ public class UserListCtl extends BaseCtl{
 	protected BaseBean populateBean(HttpServletRequest request) {
 		UserBean bean = new UserBean();
 
-		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
+		bean.setFirstName(DataUtility.getString(request.getParameter("firstName"))); 
+		
+		bean.setId(DataUtility.getLong(request.getParameter("id")));
 
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleid")));
 		bean.setLogin(DataUtility.getString(request.getParameter("loginid")));
 	
-	//	bean.setMobileNo(DataUtility.getString(request.getParameter("mobile")));
-		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
+	//	bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
+		
+		bean.setDob(DataUtility.getDate(request.getParameter("dob"))); 
+
+	//	bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 
 
 		return bean;

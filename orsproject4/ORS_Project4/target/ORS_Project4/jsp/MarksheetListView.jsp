@@ -79,7 +79,7 @@
 
 			<table border="1" width="100%" align="center" cellpadding=6px
 				id="demo" cellspacing=".2">
-				<tr style="background: skyblue">
+				<tr style="background: orange;">
 					<th><input type="checkbox" id="select_all" name="select">
 						Select All.</th>
 					<th>S.No.</th>
@@ -130,7 +130,7 @@
 					<td>
 						<%
 							if (phy >= 33 && chem >= 33 && math >= 33) {
-						%> <span style="color: green"> Pass</span> <%
+						%> <span style="color: limegreen"> Pass</span> <%
  	} else {
  %> <span style="color: red"> Fail</span> <%
  	}
@@ -201,7 +201,7 @@
 					<td>
 						<%
 							if (phy >= 33 && chem >= 33 && math >= 33) {
-						%> <span style="color: green"> Pass</span> <%
+						%> <span style="color:limegreen"> Pass</span> <%
  	} else {
  %> <span style="color: red"> Fail</span> <%
  	}

@@ -1,0 +1,68 @@
+package com.rays.pro4.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import org.apache.log4j.Logger;
+
+import com.rays.pro4.Bean.CustomerBean;
+import com.rays.pro4.Exception.ApplicationException;
+import com.rays.pro4.Exception.DatabaseException;
+import com.rays.pro4.Exception.DuplicateRecordException;
+import com.rays.pro4.Util.JDBCDataSource;
+
+public class CustomerModel {
+
+	private static Logger log = Logger.getLogger(CustomerModel.class);
+
+	public Integer nextPk() throws DatabaseException {
+
+		int pk = 0;
+
+		String sql = "SELECT MAX(ID) FROM ST_CUSTOMER";
+
+		Connection conn = null;
+		
+		try {
+			
+			
+			conn = JDBCDataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				pk = rs.getInt(1);
+			}
+			rs.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new DatabaseException("Exception : Exception in getting PK");
+		} finally {
+			JDBCDataSource.closeConnection(conn);
+		}
+
+		return pk + 1;
+
+	}
+
+	public Long add(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
+		long i = 0;
+
+		Connection conn = null;
+
+		try {
+			conn = JDBCDataSource.getConnection();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return i;
+
+	}
+
+}

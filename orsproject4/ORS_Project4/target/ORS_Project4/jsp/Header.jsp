@@ -61,8 +61,7 @@
 					href="<%=ORSView.MY_PROFILE_CTL%>">MyProfile</b></a> | <a
 					href="<%=ORSView.CHANGE_PASSWORD_CTL%>">Change Password</b></a> | <a
 					href="<%=ORSView.GET_MARKSHEET_CTL%>">Get Marksheet</b></a> | <a
-					href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>">Marksheet
-						MeritList</b>
+					href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>">Marksheet MeritList</b>
 				</a> | <%
 					if (userBean.getRoleId() == RoleBean.ADMIN) {
 				%> <a href="<%=ORSView.MARKSHEET_CTL%>">Add Marksheet</b></a> | <a
@@ -82,10 +81,14 @@
 					href="<%=ORSView.FACULTY_CTL%>">Add Faculty</b></a> | <a
 					href="<%=ORSView.FACULTY_LIST_CTL%>">Faculty List</b></a> | <a
 					href="<%=ORSView.TIMETABLE_CTL%>">Add TimeTable</b></a> | <a
-					href="<%=ORSView.TIMETABLE_LIST_CTL%>">TimeTable List</b></a> | <a
+					href="<%=ORSView.TIMETABLE_LIST_CTL%>">TimeTable List</b></a> | <%-- <a
 					href="<%=ORSView.PRODUCT_CTL%>">Add Product</b></a> | <a
-					href="<%=ORSView.PRODUCT_LIST_CTL%>">Product List</b></a> | <a
-					target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
+					href="<%=ORSView.PRODUCT_LIST_CTL%>">Product List</b></a> | --%> 
+					
+					<%-- <a href="<%=ORSView.CUSTOMER_CTL%>">Add Customer</b></a> | --%>  
+					
+					
+					 <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
  	}
  %> <%
  	if (userBean.getRoleId() == RoleBean.STUDENT) {

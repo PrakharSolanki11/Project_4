@@ -1,0 +1,39 @@
+package com.rays.proj4.Test;
+
+import java.text.SimpleDateFormat;
+
+import com.rays.pro4.Bean.CustomerBean;
+import com.rays.pro4.Bean.UserBean;
+import com.rays.pro4.Model.CustomerModel;
+import com.rays.pro4.Model.UserModel;
+
+public class CustomerTest {
+	
+	public static void main(String[] args) {
+		
+	}
+	
+	public static void testInsert() {
+		try {
+			CustomerBean bean = new CustomerBean();
+
+			bean.setId(1);
+			bean.setClientName("Prakhar Solanki");
+			bean.setLocation("Indore");
+			bean.setContactNumber(9977585934L);
+			bean.setImportance("High");
+			
+
+			CustomerModel model = new CustomerModel();
+
+			long pk = model.add(bean);
+
+			System.out.println("record insert"+pk);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+}

@@ -28,18 +28,18 @@
   } );
   </script>
 
-
-
+</head>
 <body>
    <jsp:useBean id="bean" class="com.rays.pro4.Bean.UserBean" scope="request"></jsp:useBean>
    <%@ include file="Header.jsp"%>
    
+  
    <center>
 
     <form action="<%=ORSView.USER_CTL%>" method="post">
 
         <%
-            List l = (List) request.getAttribute("roleList");
+            List rlist = (List) request.getAttribute("roleList");
         %>
 
         
@@ -54,7 +54,7 @@
             </h1>
    
             <h3><font color="red"> <%=ServletUtility.getErrorMessage(request)%></font>
-            <font color="green"> <%=ServletUtility.getSuccessMessage(request)%></font>
+            <font color="limegreen"> <%=ServletUtility.getSuccessMessage(request)%></font>
             </h3>
 	       
 </div>
@@ -83,7 +83,7 @@
 
                 <tr>
                     <th align="left">LoginId <span style="color: red">*</span> :</th>
-                    <td><input type="text" name="login" placeholder="Enter EmailId" size="26" value="<%=DataUtility.getStringData(bean.getLogin())%>"
+                    <td><input type="text" name="login" placeholder="Enter Email-Id" size="26" value="<%=DataUtility.getStringData(bean.getLogin())%>"
                         <%=(bean.getId() > 0) ? "readonly" : ""%>> </td>
                        <td style="position: fixed"> <font  color="red"> <%=ServletUtility.getErrorMessage("login", request)%></font></td>
                 </tr>
@@ -131,7 +131,7 @@
                  <tr>
                   	<th align="left">Role <span style="color: red">*</span> :</th>
                   	 <td>
-                    <%=HTMLUtility.getList("roleId",String.valueOf(bean.getRoleId()), l)%></td> 
+                    <%=HTMLUtility.getList("roleId",String.valueOf(bean.getRoleId()), rlist)%></td> 
                 <td style="position: fixed">  <font style="position: fixed" color="red"> <%=ServletUtility.getErrorMessage("roleId", request)%></font></td>
                 </tr>
     <tr><th style="padding: 3px"></th></tr>          

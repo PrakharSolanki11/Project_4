@@ -19,6 +19,9 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Rays Software\Workspace\orsproject4\ORS_Project4"/>
+			<item value="C:\Rays Software\Workspace\orsproject4\ORS_Project4\src\main\java\com\rays\pro4\controller\FrontControler.java"/>
+			<item value="C:\Rays Software\Workspace\orsproject4\My_Project"/>
 			<item value="C:\Rays Software\Workspace\orsproject4\ORS_Project4\src\main\java\com\rays\pro4\controller\BaseCtl.java"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -31,7 +34,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
-		<item key="catalog" value="All Catalogs"/>
+		<item key="catalog" value="internal"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>

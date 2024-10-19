@@ -1,3 +1,4 @@
+
 package com.rays.pro4.Util;
 
 import java.sql.Timestamp;
@@ -17,6 +18,7 @@ public class DataUtility {
 	 * Application Date Format
 	 */
 	public static final String APP_DATE_FORMAT = "MM/dd/yyyy";
+	//dd/mm/yyyy
 
 	public static final String APP_TIME_FORMAT = "MM/dd/yyyy HH:mm:ss";
 
@@ -172,6 +174,11 @@ public class DataUtility {
 
 	public static void main(String[] args) {
 		System.out.println(getInt("124"));
+	}
+
+	public static Double getDouble(String parameter) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

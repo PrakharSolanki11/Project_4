@@ -1,0 +1,32 @@
+package com.rays.pro4.Model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.rays.pro4.Util.JDBCDataSource;
+
+public class NewMarksheetModel {
+
+	public Integer nextPk() throws Exception{ 
+		
+		Connection conn = null;
+		
+		int pk = 0; 
+		
+		conn = JDBCDataSource.getConnection();
+		
+		String sql ="SELECT MAX(ID) FROM ST_MARKHSEET"; 
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql); 
+		
+		ResultSet rs = pstmt.executeQuery(); 
+		
+		while(rs.next()) {
+			pk = rs.getInt(1);
+		}
+		
+		return pk + 1;
+	}
+}

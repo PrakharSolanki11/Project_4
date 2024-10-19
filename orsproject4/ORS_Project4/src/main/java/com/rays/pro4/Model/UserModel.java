@@ -1,6 +1,6 @@
 package com.rays.pro4.Model;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -66,13 +66,19 @@ public class UserModel {
 	}
 
 	/**
-	 * Add a User
+	 * User Add 
 	 *
 	 * @param bean
 	 * @throws DatabaseException
 	 *
 	 */
 
+	/**
+	 * @param bean
+	 * @return
+	 * @throws ApplicationException
+	 * @throws DuplicateRecordException
+	 */
 	public long add(UserBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
@@ -284,12 +290,13 @@ public class UserModel {
 	 * @throws DatabaseException
 	 */
 
+	
 	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
 		String sql = "UPDATE ST_USER SET FIRST_NAME=?,LAST_NAME=?,LOGIN=?,PASSWORD=?,DOB=?,MOBILE_NO=?,ROLE_ID=?,UNSUCCESSEFUL_LOGIN=?,GENDER=?,LAST_LOGIN=?,USER_LOCK=?,REGISTERED_IP=?,LAST_LOGIN_IP=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=?  WHERE ID=?";
 		Connection conn = null;
 		UserBean existBean = findByLogin(bean.getLogin());
-		if (existBean != null && !(existBean.getId() == bean.getId())) {
+		if (existBean != null && existBean.getId() != bean.getId()) {
 			throw new DuplicateRecordException("LoginId is Already Exist");
 		}
 		try {
@@ -714,7 +721,8 @@ public class UserModel {
 
 		if (userData == null) {
 			throw new RecordNotFoundException("Email Id does not exist !");
-		}
+		} 
+		
 
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("login", userData.getLogin());
@@ -722,16 +730,14 @@ public class UserModel {
 		map.put("firstName", userData.getFirstName());
 		map.put("lastName", userData.getLastName());
 
-		System.out.println("Login = " + userData.getLogin());
-		System.out.println("Pwd = " + userData.getPassword());
-
 		String message = EmailBuilder.getForgetPasswordMessage(map);
 
 		EmailMessage msg = new EmailMessage();
 		msg.setTo(login);
 		msg.setSubject("Sunrays ORS Password reset");
 		msg.setMessage(message);
-		msg.setMessageType(EmailMessage.HTML_MSG);
+		msg.setMessageType(EmailMessage.HTML_MSG); 
+		
 
 		EmailUtility.sendMail(msg);
 		flag = true;
