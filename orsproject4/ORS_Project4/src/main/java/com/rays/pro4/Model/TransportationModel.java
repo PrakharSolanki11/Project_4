@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 //import org.apache.log4j.Logger;
 
-import com.rays.pro4.Bean.CustomerBean;
+import com.rays.pro4.Bean.TransportationBean;
 import com.rays.pro4.Exception.ApplicationException;
 import com.rays.pro4.Exception.DatabaseException;
 import com.rays.pro4.Exception.DuplicateRecordException;
@@ -24,17 +24,17 @@ import com.rays.pro4.Util.EmailUtility;
 import com.rays.pro4.Util.JDBCDataSource;
 
 /**
- * JDBC Implementation of CustomerModel.
+ * JDBC Implementation of TransportationModel.
  * 
  * @author Prakhar Solanki
  *
  */
 
-public class CustomerModel {
-	private static Logger log = Logger.getLogger(CustomerModel.class);
+public class TransportationModel {
+	private static Logger log = Logger.getLogger(TransportationModel.class);
 
 	/**
-	 * Find next PK of Customer
+	 * Find next PK of Transportation
 	 *
 	 * @throws DatabaseException
 	 */
@@ -43,7 +43,7 @@ public class CustomerModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_CUSTOMER";
+		String sql = "SELECT MAX(ID) FROM ST_TRANSPORTATION";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -66,7 +66,7 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Customer Add
+	 * Transportation Add
 	 *
 	 * @param bean
 	 * @throws DatabaseException
@@ -79,10 +79,10 @@ public class CustomerModel {
 	 * @throws ApplicationException
 	 * @throws DuplicateRecordException
 	 */
-	public long add(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
+	public long add(TransportationBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_CUSTOMER VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO ST_TRANSPORTATION VALUES(?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -95,10 +95,10 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, pk);
-			pstmt.setString(2, bean.getClientName());
-			pstmt.setString(3, bean.getLocation());
-			pstmt.setLong(4, bean.getContactNumber());
-			pstmt.setString(5, bean.getImportance());
+			pstmt.setString(2, bean.getDiscription());
+			pstmt.setInt(3, bean.getMode());
+			pstmt.setDate(4, new java.sql.Date(bean.getDate().getTime()));
+			pstmt.setLong(5, bean.getCost());
 
 			int i = pstmt.executeUpdate();
 			System.out.println(i);
@@ -127,14 +127,14 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Delete a Customer
+	 * Delete a Transportation
 	 *
 	 * @param bean
 	 * @throws DatabaseException
 	 */
-	public void delete(CustomerBean bean) throws ApplicationException {
+	public void delete(TransportationBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_CUSTOMER WHERE ID=?";
+		String sql = "DELETE FROM ST_TRANSPORTATION WHERE ID=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -158,17 +158,17 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Find Customer by PK
+	 * Find Transportation by PK
 	 *
 	 * @param pk : get parameter
 	 * @return bean
 	 * @throws DatabaseException
 	 */
 
-	public CustomerBean findByPK(long pk) throws ApplicationException {
+	public TransportationBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_CUSTOMER WHERE ID=?";
-		CustomerBean bean = null;
+		String sql = "SELECT * FROM ST_TRANSPORTATION WHERE ID=?";
+		TransportationBean bean = null;
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -176,19 +176,19 @@ public class CustomerModel {
 			pstmt.setLong(1, pk);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				bean = new CustomerBean();
+				bean = new TransportationBean();
 				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				bean.setDiscription(rs.getString(2));
+				bean.setMode(rs.getInt(3));
+				bean.setDate(rs.getDate(4));
+				bean.setCost(rs.getLong(5));
 
 			}
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("DataBase Exception ", e);
-			throw new ApplicationException("Exception : Exception in getting Customer by pk");
+			throw new ApplicationException("Exception : Exception in getting Transportation by pk");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
@@ -197,15 +197,15 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Update a customer
+	 * Update a transportation
 	 *
 	 * @param bean
 	 * @throws DatabaseException
 	 */
 
-	public void update(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
+	public void update(TransportationBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_CUSTOMER SET CLIENT_NAME=?, LOCATION=?, CONTACT_NUMBER=?, IMPORTANCE=? WHERE ID=? ";
+		String sql = "UPDATE ST_TRANSPORTATION SET DISCRIPTION=?, MODE=?, DATE=?, COST=? WHERE ID=? ";
 		Connection conn = null;
 
 		try {
@@ -213,14 +213,14 @@ public class CustomerModel {
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, bean.getClientName());
-			pstmt.setString(2, bean.getLocation());
-			pstmt.setLong(3, bean.getContactNumber());
-			pstmt.setString(4, bean.getImportance());
+			pstmt.setString(1, bean.getDiscription());
+			pstmt.setInt(2, bean.getMode());
+			pstmt.setDate(3, new java.sql.Date(bean.getDate().getTime()));
+			pstmt.setLong(4, bean.getCost());
 			pstmt.setLong(5, bean.getId());
 
 			int i = pstmt.executeUpdate();
-			System.out.println("update customer>> " + i);
+			System.out.println("update transportation>> " + i);
 			conn.commit();
 			pstmt.close();
 		} catch (Exception e) {
@@ -239,20 +239,20 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Search Customer
+	 * Search Transportation
 	 *
 	 * @param bean : Search Parameters
 	 * @throws DatabaseException
 	 */
 
-	public List search(CustomerBean bean) throws ApplicationException {
+	public List search(TransportationBean bean) throws ApplicationException {
 		return search(bean, 0, 0);
 	}
 
 	/**
-	 * Search Customer with pagination
+	 * Search Transportation with pagination
 	 *
-	 * @return list : List of Customers
+	 * @return list : List of Transportations
 	 * @param bean     : Search Parameters
 	 * @param pageNo   : Current Page No.
 	 * @param pageSize : Size of Page
@@ -260,27 +260,29 @@ public class CustomerModel {
 	 * @throws DatabaseException
 	 */
 
-	public List search(CustomerBean bean, int pageNo, int pageSize) throws ApplicationException {
+	public List search(TransportationBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_CUSTOMER WHERE 1=1");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_TRANSPORTATION WHERE 1=1");
 		if (bean != null) {
 
-			if (bean.getClientName() != null && bean.getClientName().length() > 0) {
-				sql.append(" AND CLIENT_NAME like '" + bean.getClientName() + "%'");
-			}
-			if (bean.getLocation() != null && bean.getLocation().length() > 0) {
-				sql.append(" AND LOCATION like '" + bean.getLocation() + "%'");
-			}
-			if (bean.getContactNumber() > 0) {
-				sql.append(" AND CONTACT_NUMBER = " + bean.getContactNumber());
-			}
-			if (bean.getImportance() != null && bean.getImportance().length() > 0) {
-				sql.append(" AND IMPORTANCE like '" + bean.getImportance() + "%'");
+			if (bean.getDiscription() != null && bean.getDiscription().length() > 0) {
+				sql.append(" AND DISCRIPTION like '" + bean.getDiscription() + "%'");
 			}
 			
-			System.out.println("CUSTOMER SEARCH ===== "+bean.getId());
+			if (bean.getMode() > 0) {
+				sql.append(" AND MODE = " + bean.getMode());
+			}
+			
+			if (bean.getDate() != null && bean.getDate().getTime() > 0 ) {
+				Date d = new Date(bean.getDate().getTime());
+				sql.append(" AND Date = " +d );
+			}
 			if (bean.getId() > 0) {
 				sql.append(" AND ID = " + bean.getId());
+			}
+			
+			if (bean.getCost() > 0) {
+				sql.append(" AND COST = " + bean.getCost());
 			}
 
 		}
@@ -300,12 +302,12 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				bean = new CustomerBean();
+				bean = new TransportationBean();
 				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				bean.setDiscription(rs.getString(2));
+				bean.setMode(rs.getInt(3));
+				bean.setDate(rs.getDate(4));
+				bean.setCost(rs.getLong(5));
 
 				list.add(bean);
 
@@ -313,7 +315,7 @@ public class CustomerModel {
 			rs.close();
 		} catch (Exception e) {
 			log.error("Database Exception", e);
-			throw new ApplicationException("Exception: Exception in Search Customer");
+			throw new ApplicationException("Exception: Exception in Search Transportation");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
@@ -323,9 +325,9 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Get List of Customer
+	 * Get List of Transportation
 	 *
-	 * @return list : List of Customer
+	 * @return list : List of Transportation
 	 * @throws DatabaseException
 	 */
 
@@ -334,9 +336,9 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Get List of Customer with pagination
+	 * Get List of Transportation with pagination
 	 *
-	 * @return list : List of customers
+	 * @return list : List of transportations
 	 * @param pageNo   : Current Page No.
 	 * @param pageSize : Size of Page
 	 * @throws DatabaseException
@@ -345,7 +347,7 @@ public class CustomerModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_CUSTOMER");
+		StringBuffer sql = new StringBuffer("select * from ST_TRANSPORTATION");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
@@ -359,20 +361,21 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				CustomerBean bean = new CustomerBean();
-				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				TransportationBean bean = new TransportationBean();
 
+				bean.setId(rs.getLong(1));
+				bean.setDiscription(rs.getString(2));
+				bean.setMode(rs.getInt(3));
+				bean.setDate(rs.getDate(4));
+				bean.setCost(rs.getLong(5));
+			
 				list.add(bean);
 
 			}
 			rs.close();
 		} catch (Exception e) {
 			log.error("Database Exception...", e);
-			throw new ApplicationException("Exception : Exception in getting list of customers");
+			throw new ApplicationException("Exception : Exception in getting list of transportations");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}

@@ -1,6 +1,7 @@
 package com.rays.pro4.controller;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,25 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import com.rays.pro4.Bean.BaseBean;
-import com.rays.pro4.Bean.UserBean;
+import com.rays.pro4.Bean.CustomerBean;
 import com.rays.pro4.Exception.ApplicationException;
-import com.rays.pro4.Model.RoleModel;
-import com.rays.pro4.Model.UserModel;
+import com.rays.pro4.Model.CustomerModel;
 import com.rays.pro4.Util.DataUtility;
 import com.rays.pro4.Util.PropertyReader;
 import com.rays.pro4.Util.ServletUtility;
 
 //TODO: Auto-generated Javadoc
 /**
-* User List functionality Controller. Performs operation for list, search and
-* delete operations of User
-* 
-*  @author Prakhar Solanki
-*/
-@WebServlet(name = "UserListCtl", urlPatterns = { "/ctl/UserListCtl" })
-public class UserListCtl extends BaseCtl{
+ * Customer List functionality Controller. Performs operation for list, search
+ * and delete operations of Customer
+ * 
+ * @author Prakhar Solanki
+ */
+@WebServlet(name = "CustomerListCtl", urlPatterns = { "/ctl/CustomerListCtl" })
+public class CustomerListCtl extends BaseCtl {
 
-	private static Logger log = Logger.getLogger(UserListCtl.class);
+	private static Logger log = Logger.getLogger(CustomerListCtl.class);
 
 	/*
 	 * (non-Javadoc)
@@ -37,19 +37,17 @@ public class UserListCtl extends BaseCtl{
 	 * @see in.co.rays.ors.controller.BaseCtl#preload(javax.servlet.http.
 	 * HttpServletRequest)
 	 */
-	
+
 	@Override
 	protected void preload(HttpServletRequest request) {
 
-		RoleModel rmodel = new RoleModel();
-		UserModel umodel = new UserModel();
+		CustomerModel cmodel = new CustomerModel();
 
 		try {
-			List rlist = rmodel.list(0,0);
-			List ulist = umodel.list(0,0);
 
-			request.setAttribute("RoleList", rlist);
-			request.setAttribute("Dob", ulist);
+			List clist = cmodel.list(0, 0);
+
+			request.setAttribute("Locationn", clist);
 
 		} catch (ApplicationException e) {
 			e.printStackTrace();
@@ -64,21 +62,13 @@ public class UserListCtl extends BaseCtl{
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		UserBean bean = new UserBean();
+		CustomerBean bean = new CustomerBean();
 
-		bean.setFirstName(DataUtility.getString(request.getParameter("firstName"))); 
-		
+		bean.setClientName(DataUtility.getString(request.getParameter("clientName")));
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
-
-		bean.setRoleId(DataUtility.getLong(request.getParameter("roleid")));
-		bean.setLogin(DataUtility.getString(request.getParameter("loginid")));
-	
-	//	bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
-		
-		bean.setDob(DataUtility.getDate(request.getParameter("dob"))); 
-
-	//	bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
-
+		bean.setLocation(DataUtility.getString(request.getParameter("location")));
+		bean.setImportance(DataUtility.getString(request.getParameter("importance")));
+		bean.setContactNumber(DataUtility.getLong(request.getParameter("contactNumber")));
 
 		return bean;
 	}
@@ -93,20 +83,20 @@ public class UserListCtl extends BaseCtl{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		log.debug("UserListCtl doGet Start");
+		log.debug("CustomerListCtl doGet Start");
 		List list = null;
 		List nextList = null;
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
-		UserBean bean = (UserBean) populateBean(request);
+		CustomerBean bean = (CustomerBean) populateBean(request);
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 //	        get the selected checkbox ids array for delete list
 
 		// String[] ids = request.getParameterValues("ids");
-		UserModel model = new UserModel();
+		CustomerModel model = new CustomerModel();
 
 		try {
 			list = model.search(bean, pageNo, pageSize);
@@ -119,19 +109,18 @@ public class UserListCtl extends BaseCtl{
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found ", request);
 			}
-			
+
 			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
-			//ServletUtility.setBean(bean, request);
 			ServletUtility.forward(getView(), request, response);
-			
+
 		} catch (ApplicationException e) {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
-		log.debug("UserListCtl doGet End");
+		log.debug("CustomerListCtl doGet End");
 	}
 
 	/**
@@ -145,40 +134,40 @@ public class UserListCtl extends BaseCtl{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		log.debug("UserListCtl doPost Start");
+		log.debug("CustomerListCtl doPost Start");
 
 		List list;
 		List nextList = null;
 
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
-		
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		UserBean bean = (UserBean) populateBean(request);
+		CustomerBean bean = (CustomerBean) populateBean(request);
 		// get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
-		
-		UserModel model = new UserModel();
+
+		CustomerModel model = new CustomerModel();
 
 		if (OP_SEARCH.equalsIgnoreCase(op)) {
+			System.out.println(" SEARCH METHOD ==="+bean.getId());
 			pageNo = 1;
 		} else if (OP_NEXT.equalsIgnoreCase(op)) {
 			pageNo++;
 		} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
 			pageNo--;
 		} else if (OP_NEW.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.USER_CTL, request, response);
+			ServletUtility.redirect(ORSView.CUSTOMER_CTL, request, response);
 			return;
 		} else if (OP_RESET.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
+			ServletUtility.redirect(ORSView.CUSTOMER_LIST_CTL, request, response);
 			return;
 		} else if (OP_DELETE.equalsIgnoreCase(op)) {
 			pageNo = 1;
 			if (ids != null && ids.length > 0) {
-				UserBean deletebean = new UserBean();
+				CustomerBean deletebean = new CustomerBean();
 				for (String id : ids) {
 					deletebean.setId(DataUtility.getInt(id));
 					try {
@@ -189,7 +178,7 @@ public class UserListCtl extends BaseCtl{
 						return;
 					}
 
-					ServletUtility.setSuccessMessage("User is Deleted Successfully", request);
+					ServletUtility.setSuccessMessage("Customer is Deleted Successfully", request);
 				}
 			} else {
 				ServletUtility.setErrorMessage("Select at least one record", request);
@@ -216,7 +205,7 @@ public class UserListCtl extends BaseCtl{
 		ServletUtility.setPageNo(pageNo, request);
 		ServletUtility.setPageSize(pageSize, request);
 		ServletUtility.forward(getView(), request, response);
-		log.debug("UserListCtl doGet End");
+		log.debug("CustomerListCtl doGet End");
 
 	}
 
@@ -227,7 +216,7 @@ public class UserListCtl extends BaseCtl{
 	 */
 	@Override
 	protected String getView() {
-		return ORSView.USER_LIST_VIEW;
+		return ORSView.CUSTOMER_LIST_VIEW;
 	}
 
 }

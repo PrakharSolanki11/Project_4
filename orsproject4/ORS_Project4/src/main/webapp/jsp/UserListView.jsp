@@ -195,8 +195,8 @@
 				}
 			%>
 
-			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
-				type="hidden" name="pageSize" value="<%=pageSize%>">
+			<input type="hidden" name="pageNo" value="<%=pageNo%>"> 
+			<input type="hidden" name="pageSize" value="<%=pageSize%>">
 	</form>
 	</br>
 	</br>

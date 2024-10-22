@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 //import org.apache.log4j.Logger;
 
-import com.rays.pro4.Bean.CustomerBean;
+import com.rays.pro4.Bean.FollowupBean;
 import com.rays.pro4.Exception.ApplicationException;
 import com.rays.pro4.Exception.DatabaseException;
 import com.rays.pro4.Exception.DuplicateRecordException;
@@ -24,17 +24,17 @@ import com.rays.pro4.Util.EmailUtility;
 import com.rays.pro4.Util.JDBCDataSource;
 
 /**
- * JDBC Implementation of CustomerModel.
+ * JDBC Implementation of FollowupModel.
  * 
  * @author Prakhar Solanki
  *
  */
 
-public class CustomerModel {
-	private static Logger log = Logger.getLogger(CustomerModel.class);
+public class FollowupModel {
+	private static Logger log = Logger.getLogger(FollowupModel.class);
 
 	/**
-	 * Find next PK of Customer
+	 * Find next PK of Followup
 	 *
 	 * @throws DatabaseException
 	 */
@@ -43,7 +43,7 @@ public class CustomerModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_CUSTOMER";
+		String sql = "SELECT MAX(ID) FROM ST_FOLLOWUP";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -66,7 +66,7 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Customer Add
+	 * Followup Add
 	 *
 	 * @param bean
 	 * @throws DatabaseException
@@ -79,10 +79,10 @@ public class CustomerModel {
 	 * @throws ApplicationException
 	 * @throws DuplicateRecordException
 	 */
-	public long add(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
+	public long add(FollowupBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_CUSTOMER VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO ST_FOLLOWUP VALUES(?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -95,10 +95,10 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setLong(1, pk);
-			pstmt.setString(2, bean.getClientName());
-			pstmt.setString(3, bean.getLocation());
-			pstmt.setLong(4, bean.getContactNumber());
-			pstmt.setString(5, bean.getImportance());
+			pstmt.setString(2, bean.getPatient());
+			pstmt.setString(3, bean.getDoctor());
+			pstmt.setDate(4, new java.sql.Date(bean.getVisitDate().getTime()));
+			pstmt.setLong(5, bean.getFees());
 
 			int i = pstmt.executeUpdate();
 			System.out.println(i);
@@ -127,14 +127,14 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Delete a Customer
+	 * Delete a Followup
 	 *
 	 * @param bean
 	 * @throws DatabaseException
 	 */
-	public void delete(CustomerBean bean) throws ApplicationException {
+	public void delete(FollowupBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_CUSTOMER WHERE ID=?";
+		String sql = "DELETE FROM ST_FOLLOWUP WHERE ID=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -158,17 +158,17 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Find Customer by PK
+	 * Find Followup by PK
 	 *
 	 * @param pk : get parameter
 	 * @return bean
 	 * @throws DatabaseException
 	 */
 
-	public CustomerBean findByPK(long pk) throws ApplicationException {
+	public FollowupBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_CUSTOMER WHERE ID=?";
-		CustomerBean bean = null;
+		String sql = "SELECT * FROM ST_FOLLOWUP WHERE ID=?";
+		FollowupBean bean = null;
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -176,19 +176,19 @@ public class CustomerModel {
 			pstmt.setLong(1, pk);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				bean = new CustomerBean();
+				bean = new FollowupBean();
 				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				bean.setPatient(rs.getString(2));
+				bean.setDoctor(rs.getString(3));
+				bean.setVisitDate(rs.getDate(4));
+				bean.setFees(rs.getLong(5));
 
 			}
 			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("DataBase Exception ", e);
-			throw new ApplicationException("Exception : Exception in getting Customer by pk");
+			throw new ApplicationException("Exception : Exception in getting Followup by pk");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
@@ -197,15 +197,15 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Update a customer
+	 * Update a followup
 	 *
 	 * @param bean
 	 * @throws DatabaseException
 	 */
 
-	public void update(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
+	public void update(FollowupBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_CUSTOMER SET CLIENT_NAME=?, LOCATION=?, CONTACT_NUMBER=?, IMPORTANCE=? WHERE ID=? ";
+		String sql = "UPDATE ST_FOLLOWUP SET PATIENT=?, DOCTOR=?, VISIT_DATE=?, FEES=? WHERE ID=? ";
 		Connection conn = null;
 
 		try {
@@ -213,14 +213,14 @@ public class CustomerModel {
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
-			pstmt.setString(1, bean.getClientName());
-			pstmt.setString(2, bean.getLocation());
-			pstmt.setLong(3, bean.getContactNumber());
-			pstmt.setString(4, bean.getImportance());
+			pstmt.setString(1, bean.getPatient());
+			pstmt.setString(2, bean.getDoctor());
+			pstmt.setDate(3, new java.sql.Date(bean.getVisitDate().getTime()));
+			pstmt.setLong(4, bean.getFees());
 			pstmt.setLong(5, bean.getId());
 
 			int i = pstmt.executeUpdate();
-			System.out.println("update customer>> " + i);
+			System.out.println("update followup>> " + i);
 			conn.commit();
 			pstmt.close();
 		} catch (Exception e) {
@@ -239,20 +239,20 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Search Customer
+	 * Search Followup
 	 *
 	 * @param bean : Search Parameters
 	 * @throws DatabaseException
 	 */
 
-	public List search(CustomerBean bean) throws ApplicationException {
+	public List search(FollowupBean bean) throws ApplicationException {
 		return search(bean, 0, 0);
 	}
 
 	/**
-	 * Search Customer with pagination
+	 * Search Followup with pagination
 	 *
-	 * @return list : List of Customers
+	 * @return list : List of Followups
 	 * @param bean     : Search Parameters
 	 * @param pageNo   : Current Page No.
 	 * @param pageSize : Size of Page
@@ -260,25 +260,27 @@ public class CustomerModel {
 	 * @throws DatabaseException
 	 */
 
-	public List search(CustomerBean bean, int pageNo, int pageSize) throws ApplicationException {
+	public List search(FollowupBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_CUSTOMER WHERE 1=1");
+		StringBuffer sql = new StringBuffer("SELECT * FROM ST_FOLLOWUP WHERE 1=1");
 		if (bean != null) {
 
-			if (bean.getClientName() != null && bean.getClientName().length() > 0) {
-				sql.append(" AND CLIENT_NAME like '" + bean.getClientName() + "%'");
+			if (bean.getPatient() != null && bean.getPatient().length() > 0) {
+				sql.append(" AND PATIENT like '" + bean.getPatient() + "%'");
 			}
-			if (bean.getLocation() != null && bean.getLocation().length() > 0) {
-				sql.append(" AND LOCATION like '" + bean.getLocation() + "%'");
+			if (bean.getDoctor() != null && bean.getDoctor().length() > 0) {
+				sql.append(" AND DOCTOR like '" + bean.getDoctor() + "%'");
 			}
-			if (bean.getContactNumber() > 0) {
-				sql.append(" AND CONTACT_NUMBER = " + bean.getContactNumber());
+			if (bean.getVisitDate() != null && bean.getVisitDate().getTime() > 0) {
+				Date d = new Date(bean.getVisitDate().getTime());
+				sql.append(" AND VISIT_DATE = '" + d + "'");
+				System.out.println("done");
 			}
-			if (bean.getImportance() != null && bean.getImportance().length() > 0) {
-				sql.append(" AND IMPORTANCE like '" + bean.getImportance() + "%'");
+			if (bean.getFees() != 0 && bean.getFees() > 0) {
+				sql.append(" AND FEES like '" + bean.getFees() + "%'");
 			}
-			
-			System.out.println("CUSTOMER SEARCH ===== "+bean.getId());
+
+			System.out.println("FOLLOWUP SEARCH ===== " + bean.getId());
 			if (bean.getId() > 0) {
 				sql.append(" AND ID = " + bean.getId());
 			}
@@ -300,12 +302,14 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				bean = new CustomerBean();
+				bean = new FollowupBean();
+				
 				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				bean.setPatient(rs.getString(2));
+				bean.setDoctor(rs.getString(3));
+				bean.setVisitDate(rs.getDate(4));
+				bean.setFees(rs.getLong(5));
+
 
 				list.add(bean);
 
@@ -313,7 +317,7 @@ public class CustomerModel {
 			rs.close();
 		} catch (Exception e) {
 			log.error("Database Exception", e);
-			throw new ApplicationException("Exception: Exception in Search Customer");
+			throw new ApplicationException("Exception: Exception in Search Followup");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
@@ -323,9 +327,9 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Get List of Customer
+	 * Get List of Followup
 	 *
-	 * @return list : List of Customer
+	 * @return list : List of Followup
 	 * @throws DatabaseException
 	 */
 
@@ -334,9 +338,9 @@ public class CustomerModel {
 	}
 
 	/**
-	 * Get List of Customer with pagination
+	 * Get List of Followup with pagination
 	 *
-	 * @return list : List of customers
+	 * @return list : List of followups
 	 * @param pageNo   : Current Page No.
 	 * @param pageSize : Size of Page
 	 * @throws DatabaseException
@@ -345,7 +349,7 @@ public class CustomerModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_CUSTOMER");
+		StringBuffer sql = new StringBuffer("select * from ST_FOLLOWUP");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;
@@ -359,12 +363,14 @@ public class CustomerModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				CustomerBean bean = new CustomerBean();
+				FollowupBean bean = new FollowupBean();
+		
 				bean.setId(rs.getLong(1));
-				bean.setClientName(rs.getString(2));
-				bean.setLocation(rs.getString(3));
-				bean.setContactNumber(rs.getLong(4));
-				bean.setImportance(rs.getString(5));
+				bean.setPatient(rs.getString(2));
+				bean.setDoctor(rs.getString(3));
+				bean.setVisitDate(rs.getDate(4));
+				bean.setFees(rs.getLong(5));
+
 
 				list.add(bean);
 
@@ -372,7 +378,7 @@ public class CustomerModel {
 			rs.close();
 		} catch (Exception e) {
 			log.error("Database Exception...", e);
-			throw new ApplicationException("Exception : Exception in getting list of customers");
+			throw new ApplicationException("Exception : Exception in getting list of followups");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}

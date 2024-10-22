@@ -1,9 +1,8 @@
 package com.rays.proj4.Test;
 
-import java.text.SimpleDateFormat;
 
 import com.rays.pro4.Bean.CustomerBean;
-import com.rays.pro4.Bean.UserBean;
+import com.rays.pro4.Bean.MarksheetBean;
 import com.rays.pro4.Exception.ApplicationException;
 import com.rays.pro4.Model.CustomerModel;
 import com.rays.pro4.Model.UserModel;
@@ -11,6 +10,7 @@ import com.rays.pro4.Model.UserModel;
 public class CustomerTest {
 	
 	public static void main(String[] args) throws ApplicationException {
+	
 		//testInsert();
 		testDelete();
 	}
@@ -38,12 +38,32 @@ public class CustomerTest {
 
 	}
 	
-	public static void testDelete() throws ApplicationException {
-		
-		CustomerModel model = new CustomerModel();
-	    model.delete(1);
-	    System.out.println("User Deleted");
+//	public static void testDelete() throws ApplicationException{
+//		
+//		CustomerModel model = new CustomerModel();
+//		
+//		CustomerBean bean = new CustomerBean();
+//		long pk=1;
+//		bean.setId(pk);
+//	    
+//	    	model.delete(bean);
+//	   }
+	
+	public static void testDelete() {
+		try {
+			CustomerBean bean = new CustomerBean();
+			CustomerModel model = new CustomerModel();
+			Long pk = 2L;
+			bean.setId(pk);
+			model.delete(bean);
+
+			
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+	}
+	   
 
 	}
 
-}
+

@@ -2,6 +2,7 @@ package com.rays.pro4.Bean;
 
 public class CustomerBean extends BaseBean {
 	
+	
 	private String clientName;
 	private String location;
 	private long contactNumber;
@@ -36,12 +37,12 @@ public class CustomerBean extends BaseBean {
 	@Override
 	public String getkey() {
 		// TODO Auto-generated method stub
-		return id+"";
+		return location;
 	}
 	@Override
 	public String getValue() {
 		// TODO Auto-generated method stub
-		return clientName;
+		return location;
 	}
 	
 
