@@ -70,7 +70,7 @@ public class TimeTableModel {
 		int pk = 0;
 
 		CourseModel cModel = new CourseModel();
-		CourseBean CourseBean = cModel.FindByPK(bean.getCourseId());
+		CourseBean CourseBean = cModel.findByPK(bean.getCourseId());
 		bean.setCourseName(CourseBean.getName());
 
 		SubjectModel smodel = new SubjectModel();
@@ -172,7 +172,7 @@ public class TimeTableModel {
 		Connection conn = null;
 
 		CourseModel cModel = new CourseModel();
-		CourseBean CourseBean = cModel.FindByPK(bean.getCourseId());
+		CourseBean CourseBean = cModel.findByPK(bean.getCourseId());
 		bean.setCourseName(CourseBean.getName());
 
 		SubjectModel smodel = new SubjectModel();
@@ -296,7 +296,7 @@ public class TimeTableModel {
 	public List list(int pageNo, int pageSize) throws Exception {
 		log.debug("model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_timetable");
+		StringBuffer sql = new StringBuffer("select * from st_timetable");
 
 		if (pageNo > 0) {
 			pageNo = (pageNo - 1) * pageSize;
@@ -366,7 +366,7 @@ public class TimeTableModel {
 
 	public List search(TimeTableBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model search started");
-		StringBuffer sql = new StringBuffer("select * from ST_timetable where 1=1 ");
+		StringBuffer sql = new StringBuffer("select * from st_timetable where 1=1 ");
 		if (bean != null) {
 			if (bean.getId() > 0) {
 				sql.append("AND id=" + bean.getId());
@@ -446,7 +446,7 @@ public class TimeTableModel {
 		Connection conn = null;
 		TimeTableBean bean = null;
 		StringBuffer sql = new StringBuffer(
-				"SELECT * FROM ST_TIMETABLE WHERE Course_ID=? AND Subject_ID=? AND Semester=?");
+				"select * from st_timetable where course_id=? and subject_id=? and semester=?");
 
 		try {
 			Connection con = JDBCDataSource.getConnection();
@@ -492,7 +492,7 @@ public class TimeTableModel {
 	 */
 	public TimeTableBean checkBycds(long CourseId, String Semester, Date ExamDate) throws ApplicationException {
 		StringBuffer sql = new StringBuffer(
-				"SELECT * FROM ST_TIMETABLE WHERE Course_Id=? AND semester=? AND Exam_Date=?");
+				"select * from st_timetable where course_id=? and semester=? and exam_date=?");
 
 		Connection conn = null;
 		TimeTableBean bean = null;
@@ -549,7 +549,7 @@ public class TimeTableModel {
 		Date ExDate = new Date(ExamDAte.getTime());
 
 		StringBuffer sql = new StringBuffer(
-				"SELECT * FROM TIMETABLE WHERE COURSE_ID=? AND SUBJECT_ID=? AND" + " SEMESTER=?");
+				"select * from timetable where course_id=? and subject_id=? and" + " semester=?");
 
 		try {
 			Connection con = JDBCDataSource.getConnection();
@@ -593,7 +593,7 @@ public class TimeTableModel {
 
 		Date Exdate = new Date(ExamDate.getTime());
 
-		StringBuffer sql = new StringBuffer("SELECT * FROM TIMETABLE WHERE COURSE_ID=? " + "AND EXAM_DATE=?");
+		StringBuffer sql = new StringBuffer("select * from timetable where course_id=? " + "and exam_date=?");
 
 		try {
 			Connection con = JDBCDataSource.getConnection();

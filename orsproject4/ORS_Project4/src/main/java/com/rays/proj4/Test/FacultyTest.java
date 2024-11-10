@@ -152,7 +152,7 @@ public static void testList(){
 	 try{
 		FacultyBean bean = new FacultyBean();
 		 List list=new ArrayList();
-		 list=model.list(1,10);
+		 list=model.list(0,0);
 		 
 		 if(list.size() < 0){
 			 System.out.println("Test list fail");

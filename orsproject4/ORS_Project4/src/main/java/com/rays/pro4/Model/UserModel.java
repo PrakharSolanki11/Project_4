@@ -43,7 +43,7 @@ public class UserModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_USER";
+		String sql = "select max(id) from st_user";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -82,7 +82,7 @@ public class UserModel {
 	public long add(UserBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_USER VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into st_user values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -154,7 +154,7 @@ public class UserModel {
 	 */
 	public void delete(UserBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_USER WHERE ID=?";
+		String sql = "delete from st_user where id=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -188,7 +188,7 @@ public class UserModel {
 	public UserBean findByLogin(String login) throws ApplicationException {
 		log.debug("Model findByLohin Started");
 		System.out.println("find by login start");
-		String sql = "SELECT * FROM ST_USER WHERE login=?";
+		String sql = "select * from st_user where login=?";
 		UserBean bean = null;
 		Connection conn = null;
 		try {
@@ -241,7 +241,7 @@ public class UserModel {
 
 	public UserBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_USER WHERE ID=?";
+		String sql = "select * from st_user where id=?";
 		UserBean bean = null;
 		Connection conn = null;
 		try {
@@ -293,7 +293,7 @@ public class UserModel {
 	
 	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_USER SET FIRST_NAME=?,LAST_NAME=?,LOGIN=?,PASSWORD=?,DOB=?,MOBILE_NO=?,ROLE_ID=?,UNSUCCESSEFUL_LOGIN=?,GENDER=?,LAST_LOGIN=?,USER_LOCK=?,REGISTERED_IP=?,LAST_LOGIN_IP=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=?  WHERE ID=?";
+		String sql = "update st_user set first_name=?,last_name=?,login=?,password=?,dob=?,mobile_no=?,role_id=?,unsuccesseful_login=?,gender=?,last_login=?,user_lock=?,registered_ip=?,last_login_ip=?,created_by=?,modified_by=?,created_datetime=?,modified_datetime=?  where id=?";
 		Connection conn = null;
 		UserBean existBean = findByLogin(bean.getLogin());
 		if (existBean != null && existBean.getId() != bean.getId()) {
@@ -364,7 +364,7 @@ public class UserModel {
 
 	public List search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_USER WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_user where 1=1");
 		if (bean != null) {
 
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
@@ -462,7 +462,7 @@ public class UserModel {
 
 	public List getRoles(UserBean bean) throws ApplicationException {
 		log.debug("Model GetRoles Start");
-		String sql = "SELECT * FROM ST_USER WHERE ROLE_ID=?";
+		String sql = "select * from st_user where role_id=?";
 		Connection conn = null;
 		List list = new ArrayList();
 		try {
@@ -514,7 +514,7 @@ public class UserModel {
 
 	public UserBean authenticate(String login, String password) throws ApplicationException {
 		log.debug("Model authenticate Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_USER WHERE LOGIN =? AND PASSWORD =?");
+		StringBuffer sql = new StringBuffer("select * from st_user where login =? and password =?");
 		UserBean bean = null;
 		Connection conn = null;
 		try {
@@ -580,7 +580,7 @@ public class UserModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_USER");
+		StringBuffer sql = new StringBuffer("select * from st_user");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

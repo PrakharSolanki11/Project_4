@@ -6,8 +6,6 @@
     <fullyQualifiedTypeName name="javax.mail.internet.InternetAddress"/>
     <fullyQualifiedTypeName name="javax.mail.PasswordAuthentication"/>
     <fullyQualifiedTypeName name="javax.mail.Session"/>
-    <fullyQualifiedTypeName name="com.rays.pro4.Util.DataUtility"/>
-    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="com.rays.pro4.Bean.NewMarksheetBean"/>
     <fullyQualifiedTypeName name="com.rays.pro4.controller.BaseCtl"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
@@ -22,4 +20,10 @@
     <fullyQualifiedTypeName name="com.rays.pro4.Bean.UserBean"/>
     <fullyQualifiedTypeName name="com.rays.pro4.Bean.CustomerBean"/>
     <fullyQualifiedTypeName name="com.rays.pro4.Model.CustomerModel"/>
+    <fullyQualifiedTypeName name="com.rays.pro4.Model.FollowupModel"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="com.rays.pro4.Bean.FollowupBean"/>
+    <fullyQualifiedTypeName name="com.rays.pro4.Util.DataUtility"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

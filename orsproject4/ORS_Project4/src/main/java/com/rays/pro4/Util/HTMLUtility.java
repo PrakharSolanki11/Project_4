@@ -130,7 +130,6 @@ public class HTMLUtility {
     
     public static String getList2(String name, String selectedVal, Map<Integer, String> map) {
 
-		//	System.out.println(selectedVal + "hhhhhhhhhhhhhhhiiiiiiiiiiiiiiiiiiiiii--====");
 
 			StringBuffer sb = new StringBuffer(
 					"<select style='width: 219px;  height: 23px;' class='form-control' name='" + name + "'>");

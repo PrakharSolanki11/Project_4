@@ -43,7 +43,7 @@ public class FollowupModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_FOLLOWUP";
+		String sql = "select max(id) from st_followup";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -82,7 +82,7 @@ public class FollowupModel {
 	public long add(FollowupBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_FOLLOWUP VALUES(?,?,?,?,?)";
+		String sql = "insert into st_followup values(?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -134,7 +134,7 @@ public class FollowupModel {
 	 */
 	public void delete(FollowupBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_FOLLOWUP WHERE ID=?";
+		String sql = "delete from st_followup where id=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -167,7 +167,7 @@ public class FollowupModel {
 
 	public FollowupBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_FOLLOWUP WHERE ID=?";
+		String sql = "select * from st_followup where id=?";
 		FollowupBean bean = null;
 		Connection conn = null;
 		try {
@@ -205,7 +205,7 @@ public class FollowupModel {
 
 	public void update(FollowupBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_FOLLOWUP SET PATIENT=?, DOCTOR=?, VISIT_DATE=?, FEES=? WHERE ID=? ";
+		String sql = "update st_followup set patient=?, doctor=?, visit_date=?, fees=? where id=? ";
 		Connection conn = null;
 
 		try {
@@ -262,7 +262,7 @@ public class FollowupModel {
 
 	public List search(FollowupBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_FOLLOWUP WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_followup where 1=1");
 		if (bean != null) {
 
 			if (bean.getPatient() != null && bean.getPatient().length() > 0) {
@@ -277,7 +277,7 @@ public class FollowupModel {
 				System.out.println("done");
 			}
 			if (bean.getFees() != 0 && bean.getFees() > 0) {
-				sql.append(" AND FEES like '" + bean.getFees() + "%'");
+				sql.append(" AND FEES = " + bean.getFees());
 			}
 
 			System.out.println("FOLLOWUP SEARCH ===== " + bean.getId());
@@ -349,7 +349,7 @@ public class FollowupModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_FOLLOWUP");
+		StringBuffer sql = new StringBuffer("select * from st_followup");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

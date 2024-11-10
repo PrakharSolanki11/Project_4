@@ -43,7 +43,7 @@ public class TransportationModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_TRANSPORTATION";
+		String sql = "select max(id) from st_transportation";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -82,7 +82,7 @@ public class TransportationModel {
 	public long add(TransportationBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_TRANSPORTATION VALUES(?,?,?,?,?)";
+		String sql = "insert into st_transportation values(?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -134,7 +134,7 @@ public class TransportationModel {
 	 */
 	public void delete(TransportationBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_TRANSPORTATION WHERE ID=?";
+		String sql = "delete from st_transportation where id=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -167,7 +167,7 @@ public class TransportationModel {
 
 	public TransportationBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_TRANSPORTATION WHERE ID=?";
+		String sql = "select * from st_transportation where id=?";
 		TransportationBean bean = null;
 		Connection conn = null;
 		try {
@@ -205,7 +205,7 @@ public class TransportationModel {
 
 	public void update(TransportationBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_TRANSPORTATION SET DISCRIPTION=?, MODE=?, DATE=?, COST=? WHERE ID=? ";
+		String sql = "update st_transportation set discription=?, mode=?, date=?, cost=? where id=? ";
 		Connection conn = null;
 
 		try {
@@ -262,7 +262,7 @@ public class TransportationModel {
 
 	public List search(TransportationBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_TRANSPORTATION WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_transportation where 1=1");
 		if (bean != null) {
 
 			if (bean.getDiscription() != null && bean.getDiscription().length() > 0) {
@@ -347,7 +347,7 @@ public class TransportationModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_TRANSPORTATION");
+		StringBuffer sql = new StringBuffer("select * from st_transportation");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

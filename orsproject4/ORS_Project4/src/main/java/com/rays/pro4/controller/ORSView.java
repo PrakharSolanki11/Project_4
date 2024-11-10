@@ -54,6 +54,20 @@ public interface ORSView {
 	public String TRANSPORTATION_VIEW = PAGE_FOLDER + "/TransportationView.jsp"; 
 	public String TRANSPORTATION_LIST_VIEW = PAGE_FOLDER + "/TransportationListView.jsp";
 	
+	public String FAVOURITE_VIEW = PAGE_FOLDER + "/FavouriteView.jsp"; 
+	public String FAVOURITE_LIST_VIEW = PAGE_FOLDER + "/FavouriteListView.jsp";
+	
+	public String ITEM_VIEW = PAGE_FOLDER + "/ItemView.jsp"; 
+	public String ITEM_LIST_VIEW = PAGE_FOLDER + "/ItemListView.jsp";
+	
+	public String CART_VIEW = PAGE_FOLDER + "/CartView.jsp"; 
+	public String CART_LIST_VIEW = PAGE_FOLDER + "/CartListView.jsp";
+	
+	public String STAFF_VIEW = PAGE_FOLDER + "/StaffView.jsp"; 
+	public String STAFF_LIST_VIEW = PAGE_FOLDER + "/StaffListView.jsp";
+	
+
+	
 	
 	
 	// public String ERROR_VIEW5 = PAGE_FOLDER + "/ErrorView5.jsp";
@@ -98,6 +112,21 @@ public interface ORSView {
 	
 	public String TRANSPORTATION_CTL = APP_CONTEXT + "/ctl/TransportationCtl";
 	public String TRANSPORTATION_LIST_CTL = APP_CONTEXT + "/ctl/TransportationListCtl";
+	
+	public String FAVOURITE_CTL = APP_CONTEXT + "/ctl/FavouriteCtl";
+	public String FAVOURITE_LIST_CTL = APP_CONTEXT + "/ctl/FavouriteListCtl";
+	
+	public String ITEM_CTL = APP_CONTEXT + "/ctl/ItemCtl";
+	public String ITEM_LIST_CTL = APP_CONTEXT + "/ctl/ItemListCtl";
+	
+	public String CART_CTL = APP_CONTEXT + "/ctl/CartCtl";
+	public String CART_LIST_CTL = APP_CONTEXT + "/ctl/CartListCtl";
+	
+	public String STAFF_CTL = APP_CONTEXT + "/ctl/StaffCtl";
+	public String STAFF_LIST_CTL = APP_CONTEXT + "/ctl/StaffListCtl";
+	
+	
+
 
 	
 }

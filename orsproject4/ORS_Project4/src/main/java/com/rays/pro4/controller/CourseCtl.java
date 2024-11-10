@@ -100,7 +100,7 @@ public class CourseCtl extends BaseCtl{
 		if(id>0){
 			CourseBean bean;
 			try{
-			bean = model.FindByPK(id);
+			bean = model.findByPK(id);
 			ServletUtility.setBean(bean, request);
 			
 			}catch(ApplicationException e){

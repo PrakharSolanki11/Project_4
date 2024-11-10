@@ -183,7 +183,7 @@ public class CourseListCtl extends BaseCtl {
 				for (String id : ids) {
 					deletebean.setId(DataUtility.getInt(id));
 					try {
-						model.Delete(deletebean);
+						model.delete(deletebean);
 						// ServletUtility.forward(getView(), request, response);
 					} catch (ApplicationException e) {
 						e.printStackTrace();

@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="CONTACT_NUMBER"/>
+		<item key="selection" value="STAFF"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="CONTACTNUMBER"/>
-			<item value="CLIENTNAME"/>
-			<item value="user"/>
-			<item value="User"/>
-			<item value="USER"/>
-			<item value="session"/>
-			<item value="Anshul Prajapat"/>
-			<item value="Anshul Prajapati"/>
-		</list>
-		<list key="replacehistory">
-			<item value="CONTACT_NUMBER"/>
-			<item value="CLIENT_NAME"/>
+			<item value="TRANSPORTATION"/>
+			<item value="Transportation"/>
+			<item value="transportation"/>
+			<item value="followup"/>
+			<item value="FOLLOWUP"/>
+			<item value="Followup"/>
+			<item value="FollowUp"/>
 			<item value="customer"/>
 			<item value="Customer"/>
 			<item value="CUSTOMER"/>
+			<item value="USER"/>
+			<item value="User"/>
+			<item value="user"/>
+			<item value="CONTACTNUMBER"/>
+			<item value="CLIENTNAME"/>
+		</list>
+		<list key="replacehistory">
+			<item value="STAFF"/>
+			<item value="Staff"/>
+			<item value="staff"/>
+			<item value="cart"/>
+			<item value="Cart"/>
+			<item value="CART"/>
+			<item value="ITEM"/>
+			<item value="Item"/>
+			<item value="item"/>
+			<item value="tem"/>
+			<item value="favourite"/>
+			<item value="Favourite"/>
+			<item value="FAVOURITE"/>
+			<item value="transportation"/>
+			<item value="TRANSPORTATION"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
@@ -31,5 +48,9 @@
 		<item key="DIALOG_WIDTH" value="284"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="452"/>
+		<item key="DIALOG_Y_ORIGIN" value="243"/>
 	</section>
 </section>

@@ -38,7 +38,7 @@ public class SubjectModel {
 		try {
 
 			conn = JDBCDataSource.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement("SELECT MAX(ID) FROM ST_SUBJECT");
+			PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_subject");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
@@ -67,7 +67,7 @@ public class SubjectModel {
 		Connection conn = null;
 
 		CourseModel cModel = new CourseModel();
-		CourseBean CourseBean = cModel.FindByPK(bean.getCourseId());
+		CourseBean CourseBean = cModel.findByPK(bean.getCourseId());
 		bean.setCourseName(CourseBean.getName());
 
 		SubjectBean duplicateName = findByName(bean.getCourseName());
@@ -81,7 +81,7 @@ public class SubjectModel {
 			conn = JDBCDataSource.getConnection();
 			pk = nextPK();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("INSERT  ST_SUBJECT VALUE(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("insert  st_subject value(?,?,?,?,?,?,?,?,?)");
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getSubjectName());
 			pstmt.setString(3, bean.getDescription());
@@ -124,7 +124,7 @@ public class SubjectModel {
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
-			PreparedStatement pstmt = conn.prepareStatement("DELETE  FROM ST_SUBJECT WHERE ID=?");
+			PreparedStatement pstmt = conn.prepareStatement("delete  from st_subject where id=?");
 			pstmt.setLong(1, bean.getId());
 			pstmt.executeUpdate();
 			conn.commit();
@@ -164,14 +164,14 @@ public class SubjectModel {
 		 */
 
 		CourseModel cModel = new CourseModel();
-		CourseBean CourseBean = cModel.FindByPK(bean.getCourseId());
+		CourseBean CourseBean = cModel.findByPK(bean.getCourseId());
 		bean.setCourseName(CourseBean.getName());
 
 		try {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"UPDATE ST_SUBJECT SET SUBJECT_NAME=?,DESCRIPTION=?,COURSE_ID=?,COURSE_NAME=?,CREATED_BY=?,MODIFIED_BY=?,CREATED_DATETIME=?,MODIFIED_DATETIME=? WHERE ID=?");
+					"update st_subject set subject_name=?,description=?,course_id=?,course_name=?,created_by=?,modified_by=?,created_datetime=?,modified_datetime=? where id=?");
 
 			pstmt.setString(1, bean.getSubjectName());
 			pstmt.setString(2, bean.getDescription());
@@ -210,7 +210,7 @@ public class SubjectModel {
 	 */
 	public SubjectBean findByName(String name) throws ApplicationException {
 		log.debug("Model findByName Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_SUBJECT WHERE SUBJECT_NAME=?");
+		StringBuffer sql = new StringBuffer("select * from st_subject where subject_name=?");
 		SubjectBean bean = null;
 		Connection conn = null;
 
@@ -255,7 +255,7 @@ public class SubjectModel {
 
 	public SubjectBean FindByPK(long pk) throws ApplicationException {
 		log.debug("Model FindByPK Started");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_SUBJECT WHERE ID=?");
+		StringBuffer sql = new StringBuffer("select * from st_subject where id=?");
 		Connection conn = null;
 		SubjectBean bean = null;
 		try {
@@ -312,7 +312,7 @@ public class SubjectModel {
 
 	public List search(SubjectBean bean, int pageNo, int pageSize) throws DatabaseException, ApplicationException {
 		log.debug("Model search Started");
-		StringBuffer sql = new StringBuffer("Select * from ST_SUBJECT where true");
+		StringBuffer sql = new StringBuffer("select * from st_subject where true");
 		if (bean != null) {
 			if (bean.getId() > 0) {
 				sql.append(" AND ID = " + bean.getId());

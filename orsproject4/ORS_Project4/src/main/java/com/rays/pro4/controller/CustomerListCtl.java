@@ -65,7 +65,7 @@ public class CustomerListCtl extends BaseCtl {
 		CustomerBean bean = new CustomerBean();
 
 		bean.setClientName(DataUtility.getString(request.getParameter("clientName")));
-		bean.setId(DataUtility.getLong(request.getParameter("id")));
+		bean.setId(DataUtility.getLong(request.getParameter("ids")));
 		bean.setLocation(DataUtility.getString(request.getParameter("location")));
 		bean.setImportance(DataUtility.getString(request.getParameter("importance")));
 		bean.setContactNumber(DataUtility.getLong(request.getParameter("contactNumber")));
@@ -183,6 +183,8 @@ public class CustomerListCtl extends BaseCtl {
 			} else {
 				ServletUtility.setErrorMessage("Select at least one record", request);
 			}
+			
+			
 		}
 		try {
 

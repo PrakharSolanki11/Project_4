@@ -43,7 +43,7 @@ public class CustomerModel {
 
 		log.debug("Model nextPK Started");
 
-		String sql = "SELECT MAX(ID) FROM ST_CUSTOMER";
+		String sql = "select max(id) from st_customer";
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -82,7 +82,7 @@ public class CustomerModel {
 	public long add(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model add Started");
 
-		String sql = "INSERT INTO ST_CUSTOMER VALUES(?,?,?,?,?)";
+		String sql = "insert into st_customer values(?,?,?,?,?)";
 
 		Connection conn = null;
 		int pk = 0;
@@ -134,7 +134,7 @@ public class CustomerModel {
 	 */
 	public void delete(CustomerBean bean) throws ApplicationException {
 		log.debug("Model delete start");
-		String sql = "DELETE FROM ST_CUSTOMER WHERE ID=?";
+		String sql = "delete from st_customer where id=?";
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -167,7 +167,7 @@ public class CustomerModel {
 
 	public CustomerBean findByPK(long pk) throws ApplicationException {
 		log.debug("Model findBy PK start");
-		String sql = "SELECT * FROM ST_CUSTOMER WHERE ID=?";
+		String sql = "select * from st_customer where id=?";
 		CustomerBean bean = null;
 		Connection conn = null;
 		try {
@@ -205,7 +205,7 @@ public class CustomerModel {
 
 	public void update(CustomerBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("Model Update Start");
-		String sql = "UPDATE ST_CUSTOMER SET CLIENT_NAME=?, LOCATION=?, CONTACT_NUMBER=?, IMPORTANCE=? WHERE ID=? ";
+		String sql = "update st_customer set client_name=?, location=?, contact_number=?, importance=? where id=? ";
 		Connection conn = null;
 
 		try {
@@ -262,7 +262,7 @@ public class CustomerModel {
 
 	public List search(CustomerBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model Search Start");
-		StringBuffer sql = new StringBuffer("SELECT * FROM ST_CUSTOMER WHERE 1=1");
+		StringBuffer sql = new StringBuffer("select * from st_customer where 1=1");
 		if (bean != null) {
 
 			if (bean.getClientName() != null && bean.getClientName().length() > 0) {
@@ -345,7 +345,7 @@ public class CustomerModel {
 	public List list(int pageNo, int pageSize) throws ApplicationException {
 		log.debug("Model list Started");
 		ArrayList list = new ArrayList();
-		StringBuffer sql = new StringBuffer("select * from ST_CUSTOMER");
+		StringBuffer sql = new StringBuffer("select * from st_customer");
 
 		if (pageSize > 0) {
 			pageNo = (pageNo - 1) * pageSize;

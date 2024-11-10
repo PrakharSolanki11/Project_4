@@ -130,7 +130,7 @@
 					<td>
 						<%
 							if (phy >= 33 && chem >= 33 && math >= 33) {
-						%> <span style="color: green"> Pass</span> <%
+						%> <span style="color: limegreen"> Pass</span> <%
  	} else {
  %> <span style="color: red"> Fail</span> <%
  	}

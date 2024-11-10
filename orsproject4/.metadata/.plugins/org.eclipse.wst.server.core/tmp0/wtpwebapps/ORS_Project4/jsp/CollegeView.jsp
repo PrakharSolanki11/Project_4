@@ -1,4 +1,4 @@
- <%@page import="com.rays.pro4.controller.CollegeCtl"%>
+<%@page import="com.rays.pro4.controller.CollegeCtl"%>
 <%@page import="com.rays.pro4.Util.DataUtility"%>
 <%@page import="com.rays.pro4.Util.ServletUtility"%> 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

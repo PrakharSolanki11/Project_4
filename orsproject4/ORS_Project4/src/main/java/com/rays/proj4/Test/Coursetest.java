@@ -64,7 +64,7 @@ public class Coursetest {
 			CourseBean bean = new CourseBean();
 			long pk=3L;
 			bean.setId(1);
-			model.Delete(bean);
+			model.delete(bean);
 			System.out.println("Test Deleted");
 			/*
 			 * CourseBean deleteBean=model.findByPK(pk); if(deleteBean == null) {
@@ -100,7 +100,7 @@ public class Coursetest {
 		try {
 			CourseBean bean=new CourseBean();
 			long pk=1L;
-			bean=model.FindByPK(pk);
+			bean=model.findByPK(pk);
 			if(bean==null) {
 				System.out.println("test findbypk fail");
 			}
@@ -119,7 +119,7 @@ public class Coursetest {
 	
 	public static void testUpdate() {
 		try {
-			CourseBean bean = model.FindByPK(1L);
+			CourseBean bean = model.findByPK(1L);
 			bean.setName("Mca");
 			//bean.setDescription("commerce");
 			model.update(bean);

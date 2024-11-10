@@ -37,7 +37,7 @@ public class CustomerBean extends BaseBean {
 	@Override
 	public String getkey() {
 		// TODO Auto-generated method stub
-		return location;
+		return id+"";
 	}
 	@Override
 	public String getValue() {

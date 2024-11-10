@@ -85,8 +85,20 @@
 					href="<%=ORSView.PRODUCT_CTL%>">Add Product</b></a> | <a
 					href="<%=ORSView.PRODUCT_LIST_CTL%>">Product List</b></a> | --%> 
 					
-					<%-- <a href="<%=ORSView.CUSTOMER_CTL%>">Add Customer</b></a> | --%>  
+					<a href="<%=ORSView.CUSTOMER_CTL%>">Add Customer</b></a> | 
+					<a href="<%=ORSView.CUSTOMER_LIST_CTL%>">Customer List    </b></a> | 
 					
+					<a href="<%=ORSView.FOLLOWUP_CTL%>">Add Followup</b></a> | 
+					<a href="<%=ORSView.FOLLOWUP_LIST_CTL%>">Followup List</b></a> | 
+					
+					<a href="<%=ORSView.TRANSPORTATION_CTL%>">Add Transportation</b></a> | 
+					<a href="<%=ORSView.TRANSPORTATION_LIST_CTL%>">Transportation List</b></a> | 
+					
+					<a href="<%=ORSView.FAVOURITE_CTL%>">Add FavouriteList</b></a> | 
+					<a href="<%=ORSView.FAVOURITE_LIST_CTL%>">Favourite List</b></a> | 
+					
+					<a href="<%=ORSView.ITEM_CTL%>">Add Item</b></a> | 
+					<a href="<%=ORSView.ITEM_LIST_CTL%>">Item List</b></a> | 
 					
 					 <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
  	}
