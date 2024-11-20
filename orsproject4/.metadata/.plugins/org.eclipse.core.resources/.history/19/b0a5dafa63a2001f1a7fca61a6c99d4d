@@ -1,0 +1,27 @@
+package com.rays.pro4.Bean;
+
+import java.util.Date;
+
+public class InventoryBean extends BaseBean {
+	
+	
+	private String supplierName;
+	private Date lastUpdatedDate;
+	private int quantity;
+	private int product;
+	
+	
+
+	@Override
+	public String getkey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

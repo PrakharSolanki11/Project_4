@@ -16,10 +16,13 @@ com\rays\proj4\Test\FacultyTest.class
 com\rays\pro4\Bean\FavouriteBean.class
 com\rays\proj4\Test\RoleTest.class
 com\rays\pro4\Bean\ProductBean.class
+com\rays\pro4\Model\CartModel.class
 com\rays\pro4\controller\ORSView.class
 com\rays\pro4\controller\MarksheetMeritListCtl.class
+com\rays\pro4\controller\StaffCtl.class
 com\rays\proj4\Test\CollegeModelTest.class
 com\rays\pro4\controller\UserListCtl.class
+com\rays\pro4\controller\StaffListCtl.class
 com\rays\pro4\Bean\ItemBean.class
 com\rays\pro4\controller\ErrorCtl.class
 com\rays\pro4\controller\TimeTableCtl.class
@@ -30,6 +33,7 @@ com\rays\pro4\Util\ServletUtility.class
 com\rays\pro4\Model\StudentModel.class
 com\rays\pro4\Bean\RoleBean.class
 com\rays\proj4\Test\StudentTest.class
+com\rays\pro4\Bean\StaffBean.class
 com\rays\proj4\Test\MarksheetTest.class
 com\rays\pro4\Model\FollowupModel.class
 com\rays\proj4\Test\UserTest.class
@@ -38,6 +42,7 @@ com\rays\pro4\Bean\StudentBean.class
 com\rays\proj4\Test\CountTest.class
 com\rays\pro4\controller\ProductCtl.class
 com\rays\pro4\controller\FollowupCtl.class
+com\rays\pro4\Model\StaffModel.class
 com\rays\pro4\controller\ChangePasswordCtl.class
 com\rays\pro4\Exception\RecordNotFoundException.class
 com\rays\pro4\controller\TransportationCtl.class
@@ -84,6 +89,7 @@ com\rays\pro4\controller\SubjectListCtl.class
 com\rays\pro4\Model\FavouriteModel.class
 com\rays\pro4\Bean\CourseBean.class
 com\rays\pro4\controller\SubjectCtl.class
+com\rays\pro4\controller\CartListCtl.class
 com\rays\pro4\controller\UserCtl.class
 com\rays\proj4\Test\Test.class
 com\rays\pro4\Exception\DatabaseException.class
@@ -100,7 +106,9 @@ com\rays\pro4\controller\CourseCtl.class
 com\rays\pro4\Exception\ApplicationException.class
 com\rays\pro4\Bean\TimeTableBean.class
 com\rays\pro4\controller\CustomerListCtl.class
+com\rays\pro4\controller\CartCtl.class
 com\rays\pro4\controller\ItemCtl.class
+com\rays\pro4\Bean\CartBean.class
 com\rays\pro4\Util\EmailBuilder.class
 com\rays\pro4\controller\RoleListCtl.class
 com\rays\pro4\controller\FacultyListCtl.class

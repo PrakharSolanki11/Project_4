@@ -84,8 +84,7 @@ public class HTMLUtility {
             System.out.println("this is key=="+key+"  this is val=="+val);
 
             if (key.trim().equals(selectedVal)) {
-                sb.append("<option selected value='"+ key +"'>" + val
-                        + "</option>");
+            	sb.append("<option selected value='" + val + "'>" + key + "</option>");
             } else {
                 sb.append("<option value='"+ key.trim() +"'>" + val + "</option>");
             }

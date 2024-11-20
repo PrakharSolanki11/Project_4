@@ -215,16 +215,14 @@ public class TransportationCtl extends BaseCtl {
 					System.out.println(" U ctl DoPost 33333");
 					long pk = model.add(bean);
 					
+					bean = model.findByPK(pk);
+					
 					ServletUtility.setBean(bean, request);
 
 					ServletUtility.setSuccessMessage("Transportation is successfully Added", request);
-					/*
-					 * ServletUtility.forward(getView(), request, response);
-					 */				}
-				/*
-				 * ServletUtility.setBean(bean, request);
-				 * ServletUtility.setSuccessMessage("Transportation is successfully saved", request);
-				 */
+			
+				}
+				
 
 			} catch (ApplicationException e) {
 				log.error(e);

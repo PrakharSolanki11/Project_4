@@ -69,7 +69,6 @@
 				if (list.size() != 0) {
 			%>
 			<table width="100%" align="center">
-			   <input type="hidden" name="id" value="<%=bean.getId()%>">
 				<tr>
 					<th></th>
 					<td align="center"><label>Client Name</font> :

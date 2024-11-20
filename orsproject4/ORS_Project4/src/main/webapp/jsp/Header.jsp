@@ -106,6 +106,16 @@
 					<a href="<%=ORSView.STAFF_CTL%>">Add Staff</b></a> | 
 					<a href="<%=ORSView.STAFF_LIST_CTL%>">Staff List</b></a> | 
 					
+					<a href="<%=ORSView.INVENTORY_CTL%>">Add Inventory</b></a> | 
+					<a href="<%=ORSView.INVENTORY_LIST_CTL%>">Inventory List</b></a> | 
+					
+					<a href="<%=ORSView.STOCK_CTL%>">Add Stock</b></a> | 
+					<a href="<%=ORSView.STOCK_LIST_CTL%>">Stock List</b></a> | 
+					
+					<a href="<%=ORSView.DOCTOR_CTL%>">Add Doctor</b></a> | 
+					<a href="<%=ORSView.DOCTOR_LIST_CTL%>">Doctor List</b></a> | 
+					
+					
 					 <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
  	}
  %> <%

@@ -1,0 +1,25 @@
+package com.rays.pro4.Bean;
+
+import java.util.Date;
+
+public class StockBean extends BaseBean{
+	
+	
+	private int quantity;
+	private float purchasePrice;
+	private Date purchaseDate;
+	private int orderType;
+
+	@Override
+	public String getkey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="STAFF"/>
+		<item key="selection" value="Doctor"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="true"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="TRANSPORTATION"/>
 			<item value="Transportation"/>
 			<item value="transportation"/>
+			<item value="TRANSPORTATION"/>
+			<item value="staff"/>
+			<item value="Staff"/>
+			<item value="STAFF"/>
 			<item value="followup"/>
 			<item value="FOLLOWUP"/>
 			<item value="Followup"/>
@@ -20,26 +23,23 @@
 			<item value="CUSTOMER"/>
 			<item value="USER"/>
 			<item value="User"/>
-			<item value="user"/>
-			<item value="CONTACTNUMBER"/>
-			<item value="CLIENTNAME"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Doctor"/>
+			<item value="doctor"/>
+			<item value="DOCTOR"/>
+			<item value="STOCK"/>
+			<item value="stock"/>
+			<item value="Stock"/>
+			<item value="INVENTORY"/>
+			<item value="Inventory"/>
+			<item value="inventory"/>
 			<item value="STAFF"/>
 			<item value="Staff"/>
 			<item value="staff"/>
 			<item value="cart"/>
 			<item value="Cart"/>
 			<item value="CART"/>
-			<item value="ITEM"/>
-			<item value="Item"/>
-			<item value="item"/>
-			<item value="tem"/>
-			<item value="favourite"/>
-			<item value="Favourite"/>
-			<item value="FAVOURITE"/>
-			<item value="transportation"/>
-			<item value="TRANSPORTATION"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

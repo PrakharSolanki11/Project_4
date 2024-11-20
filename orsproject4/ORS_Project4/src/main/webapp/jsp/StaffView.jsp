@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<%=ORSView.APP_CONTEXT%>/js/Utilities.js"></script>
+
 <script>
 	$(function() {
 		$("#udatee").datepicker({
@@ -77,23 +79,26 @@
 
 
 			<table>
+
+				<input type="hidden" name"id" value=<%=bean.getId()%>">
 				<tr>
-					<input type="hidden" name="id" value="<%=bean.getId()%>">
-					<th align="left">Full Name<span style="color: red">*</span>
+					<th align="left">FullName<span style="color: red">*</span>
 						:
 					</th>
 					<td><input type="text" name="fullName"
-						placeholder="Enter FullName"  size="26" maxlength="45"
-						value="<%=DataUtility.getStringData(bean.getFullName())%>"
-						></td>
-					<td style="position: fixed"><font color="red"><%=ServletUtility.getErrorMessage("fullName", request)%></font></td>
+							oninput=" handleLetterInput(this, 'fullNameError', 10)"
+							onblur=" validateLetterInput(this, 'fullNameError', 10)"
+							placeholder="Enter Full Name" size="26" value="<%=DataUtility.getStringData(bean.getFullName())%>"></td>
+					<td style="position: fixed"><font color="red"
+						id="fullNameError"><%=ServletUtility.getErrorMessage("fullName", request)%></font></td>
 
 				</tr>
+
 
 				<tr>
 					<th style="padding: 3px"></th>
 				</tr>
-				
+
 				<tr>
 					<th align="left">Joining Date <span style="color: red">*</span>
 						:
@@ -102,10 +107,10 @@
 						placeholder="Enter Joining Date" size="26" readonly="readonly"
 						id="udatee"
 						value="<%=DataUtility.getDateString(bean.getJoiningDate())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("joiningDate", request)%></font></td>
+					<td style="position: fixed"><font color="red"> <%=ServletUtility.getErrorMessage("joiningDate", request)%></font></td>
 				</tr>
 
-				
+
 
 				<tr>
 					<th style="padding: 3px"></th>
@@ -116,32 +121,32 @@
 					</th>
 					<td>
 						<%
-						String hlist = HTMLUtility.getList2("division", DataUtility.getStringData(bean.getDivision()),map);
-						%> 
-						<%=hlist%>
+							String hlist = HTMLUtility.getList2("division", String.valueOf(bean.getDivision()), map);
+						%> <%=hlist%> <font color="red"> <%=ServletUtility.getErrorMessage("division", request)%></font>
 					</td>
-					<td style="position: fixed"><font color="red"> <%=ServletUtility.getErrorMessage("division", request)%></font></td>
 				</tr>
 
 				<tr>
 					<th style="padding: 3px"></th>
 				</tr>
-				
-					<tr>
-					<th align="left">Previous Employer<span style="color: red">*</span>
+
+				<tr>
+					<th align="left">Previous Employer <span style="color: red">*</span>
 						:
 					</th>
 					<td><input type="text" name="previousEmployer"
 						placeholder="Enter Previous Employer" size="26"
-						value="<%=(DataUtility.getStringData(bean.getPreviousEmployer()))%>"></td>
-					<td style="position: fixed"><font color="red"><%=ServletUtility.getErrorMessage("previousEmployer", request)%></font></td>
-
+						oninput="handleLetterInput(this, 'previousEmployerError', 20)"
+						onblur="validateLetterInput(this,'previousEmployerError', 20)"
+						value="<%=DataUtility.getStringData(bean.getPreviousEmployer())%>">
+						<font color="red" id="productNameError"> <%=ServletUtility.getErrorMessage("previousEmployer", request)%></font>
+					</td>
 				</tr>
-				
+
 				<tr>
 					<th style="padding: 3px"></th>
 				</tr>
-				
+
 
 
 
@@ -151,8 +156,8 @@
 						if (bean.getId() > 0) {
 					%>
 					<td colspan="2">&nbsp; &emsp; <input type="submit"
-						name="operation" value="<%=StaffCtl.OP_UPDATE%>">
-						&nbsp; &nbsp; <input type="submit" name="operation"
+						name="operation" value="<%=StaffCtl.OP_UPDATE%>"> &nbsp;
+						&nbsp; <input type="submit" name="operation"
 						value="<%=StaffCtl.OP_CANCEL%>"></td>
 
 					<%

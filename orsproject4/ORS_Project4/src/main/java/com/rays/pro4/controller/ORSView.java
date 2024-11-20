@@ -66,6 +66,15 @@ public interface ORSView {
 	public String STAFF_VIEW = PAGE_FOLDER + "/StaffView.jsp"; 
 	public String STAFF_LIST_VIEW = PAGE_FOLDER + "/StaffListView.jsp";
 	
+	public String INVENTORY_VIEW = PAGE_FOLDER + "/InventoryView.jsp"; 
+	public String INVENTORY_LIST_VIEW = PAGE_FOLDER + "/InventoryListView.jsp";
+	
+	public String STOCK_VIEW = PAGE_FOLDER + "/StockView.jsp"; 
+	public String STOCK_LIST_VIEW = PAGE_FOLDER + "/StockListView.jsp";
+	
+	public String DOCTOR_VIEW = PAGE_FOLDER + "/DoctorView.jsp"; 
+	public String DOCTOR_LIST_VIEW = PAGE_FOLDER + "/DoctorListView.jsp";
+	
 
 	
 	
@@ -124,6 +133,15 @@ public interface ORSView {
 	
 	public String STAFF_CTL = APP_CONTEXT + "/ctl/StaffCtl";
 	public String STAFF_LIST_CTL = APP_CONTEXT + "/ctl/StaffListCtl";
+	
+	public String INVENTORY_CTL = APP_CONTEXT + "/ctl/InventoryCtl";
+	public String INVENTORY_LIST_CTL = APP_CONTEXT + "/ctl/InventoryListCtl";
+	
+	public String STOCK_CTL = APP_CONTEXT + "/ctl/StockCtl";
+	public String STOCK_LIST_CTL = APP_CONTEXT + "/ctl/StockListCtl";
+	
+	public String DOCTOR_CTL = APP_CONTEXT + "/ctl/DoctorCtl";
+	public String DOCTOR_LIST_CTL = APP_CONTEXT + "/ctl/DoctorListCtl";
 	
 	
 

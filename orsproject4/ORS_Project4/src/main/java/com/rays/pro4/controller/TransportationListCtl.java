@@ -80,7 +80,7 @@ public class TransportationListCtl extends BaseCtl {
 
 
 
-		bean.setId(DataUtility.getLong(request.getParameter("ids"))); 
+		bean.setId(DataUtility.getLong(request.getParameter("id"))); 
 		
 		bean.setDiscription(DataUtility.getString(request.getParameter("discription")));
 

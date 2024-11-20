@@ -35,6 +35,19 @@ public class DataValidator {
 			return false;
 		}
 	}
+	
+	public static boolean isFloat(String val) {
+		if (isNotNull(val)) {
+			try {
+				float i = Float.parseFloat(val);
+				return true;
+			} catch (NumberFormatException e) {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	public static boolean isLong(String val) {
 		if (isNotNull(val)) {

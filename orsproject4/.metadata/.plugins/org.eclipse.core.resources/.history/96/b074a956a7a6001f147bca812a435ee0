@@ -1,0 +1,25 @@
+package com.rays.pro4.Bean;
+
+import java.util.Date;
+
+public class DoctorBean extends BaseBean{
+
+	private String name;
+	private Date dateOfBirth;
+	private long mobileNo;
+	private int expertise;
+	
+	
+	@Override
+	public String getkey() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

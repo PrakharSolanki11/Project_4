@@ -255,12 +255,12 @@ public class ItemModel {
 	/**
 	 * Search Item with pagination
 	 *
-	 * @return list : List of Items
-	 * @param bean     : Search Parameters
-	 * @param pageNo   : Current Page No.
-	 * @param pageSize : Size of Page
+	 * @return list : List of Items 
+	 * @param bean     : Search Parameters 
+	 * @param pageNo   : Current Page No. 
+	 * @param pageSize : Size of Page 
 	 *
-	 * @throws DatabaseException
+	 * @throws DatabaseException 
 	 */
 
 	public List search(ItemBean bean, int pageNo, int pageSize) throws ApplicationException {

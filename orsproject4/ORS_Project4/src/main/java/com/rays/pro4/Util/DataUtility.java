@@ -70,6 +70,14 @@ public class DataUtility {
 			return 0;
 		}
 	}
+	
+	public static float getFloat(String val) {
+		if (DataValidator.isFloat(val)) {
+			return Float.parseFloat(val);
+		} else {
+			return 0;
+		}
+	}
 
 	/**
 	 * Converts String into Long

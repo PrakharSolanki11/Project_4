@@ -100,6 +100,12 @@
 					<a href="<%=ORSView.ITEM_CTL%>">Add Item</b></a> | 
 					<a href="<%=ORSView.ITEM_LIST_CTL%>">Item List</b></a> | 
 					
+					<a href="<%=ORSView.CART_CTL%>">Add Cart</b></a> | 
+					<a href="<%=ORSView.CART_LIST_CTL%>">Cart List</b></a> | 
+					
+					<a href="<%=ORSView.STAFF_CTL%>">Add Staff</b></a> | 
+					<a href="<%=ORSView.STAFF_LIST_CTL%>">Staff List</b></a> | 
+					
 					 <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
  	}
  %> <%
