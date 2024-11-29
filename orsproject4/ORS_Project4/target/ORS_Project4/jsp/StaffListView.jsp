@@ -87,7 +87,7 @@
 
 						
 						&nbsp; <label>Division</font> :
-					</label><%=HTMLUtility.getList2("division", DataUtility.getStringData(bean.getDivision()), map)%>
+					</label><%=HTMLUtility.getList2("division",  String.valueOf(bean.getDivision()), map)%>
 						
 						
 

@@ -74,12 +74,11 @@
 				if (list.size() != 0) {
 			%>
 			<table width="100%" align="center">
-			   <input type="hidden" name="id" value="<%=bean.getId()%>">
 				<tr>
 				     <th></th>
 					<td align="center">
 				     &emsp; <label>Discription</font> :
-					</label> <%=HTMLUtility.getList("ids", DataUtility.getStringData(bean.getDiscription()),tlist )%>
+					</label> <%=HTMLUtility.getList("id", DataUtility.getStringData(bean.getDiscription()),tlist )%>
 				
 				
 					<label>Cost</font> :

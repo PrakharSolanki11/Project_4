@@ -154,67 +154,67 @@ function handleMobileNumberInput(inputElement, errorElementId, maxLength) {
     }
 }
 
+
+
+
 function handleDoubleInput(inputElement, errorElementId, maxLength) {
     const errorMessage = document.getElementById(errorElementId);
     let currentValue = inputElement.value;
 
-    console.log("Initial Input:", currentValue);
-
-    // Clear existing error messages
+    // Clear the error message initially
     errorMessage.textContent = '';
 
-    // Remove all invalid characters except digits and one decimal point
-    currentValue = currentValue.replace(/[^0-9.]/g, '');
-    console.log("After removing invalid characters:", currentValue);
+    // Allow only numbers and a single decimal point
+    const validValue = currentValue.replace(/[^0-9.]/g, '');
+    if (validValue !== currentValue) {
+        errorMessage.textContent = 'Only numbers and a single decimal point are allowed.';
+        currentValue = validValue;
+    }
 
-    // Count the number of decimal points
+    // Count decimal points
     const decimalCount = (currentValue.match(/\./g) || []).length;
-    console.log("Number of decimal points:", decimalCount);
-
     if (decimalCount > 1) {
         errorMessage.textContent = 'Only one decimal point is allowed.';
         const parts = currentValue.split('.');
-        currentValue = parts[0] + '.' + parts.slice(1).join('').replace(/\./g, '');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros (allow "0." but not unnecessary leading zeros)
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.') && currentValue.length > 1) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Allow typing a decimal point after a number (e.g., "123.")
+    if (currentValue.endsWith('.') && decimalCount === 1) {
         inputElement.value = currentValue;
-        console.log("After fixing multiple decimal points:", currentValue);
         return;
     }
 
-    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
-        currentValue = currentValue.replace(/^0+/, '');
+    // Limit decimal places to 2
+    if (decimalPart.length > 2) {
+        errorMessage.textContent = 'Only 2 decimal places are allowed.';
+        decimalPart = decimalPart.slice(0, 2);
     }
-    console.log("After removing leading zeros:", currentValue);
 
-    const parts = currentValue.split('.');
-    let integerPart = parts[0] || '';
-    let decimalPart = parts[1] || '';
-
-    console.log("Integer Part:", integerPart);
-    console.log("Decimal Part:", decimalPart);
-
-    if (integerPart.length > maxLength) {
+    // Enforce maximum length constraint (integer + decimal combined)
+    if (integerPart.length + decimalPart.length > maxLength) {
         errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
-        integerPart = integerPart.slice(0, maxLength);
-        decimalPart = '';
-        console.log("Integer part after trimming to maxLength:", integerPart);
-    } else {
-        const availableLengthForDecimal = maxLength - integerPart.length;
-        if (decimalPart.length > availableLengthForDecimal) {
-            errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
-        }
-        decimalPart = decimalPart.slice(0, availableLengthForDecimal);
-        console.log("Decimal part after trimming to available length:", decimalPart);
+        const allowedDecimalLength = Math.max(0, maxLength - integerPart.length);
+        decimalPart = decimalPart.slice(0, allowedDecimalLength);
+        integerPart = integerPart.slice(0, maxLength - decimalPart.length);
     }
 
+    // Update the input element's value
     if (decimalPart) {
         inputElement.value = `${integerPart}.${decimalPart}`;
     } else {
         inputElement.value = integerPart;
-        if (currentValue.endsWith('.')) {
-            inputElement.value += '.';
-        }
     }
-    console.log("Final Input Value:", inputElement.value);
 }
 
 
@@ -222,58 +222,7 @@ function handleDoubleInput(inputElement, errorElementId, maxLength) {
 
 
 
-/*function handleDoubleInput(inputElement, errorElementId, maxLength) {
-    const errorMessage = document.getElementById(errorElementId);
-    let currentValue = inputElement.value;
-
-    errorMessage.textContent = '';
-
-    if (isNaN(currentValue) || /[^\d.]/.test(currentValue)) {
-        errorMessage.textContent = 'Only numbers and a decimal point are allowed.';
-        inputElement.value = currentValue.replace(/[^\d.]/g, '');
-        return;
-    }
-
-    currentValue = currentValue.replace(/^0+(?=\d)/, '');
-
-    const parts = currentValue.split('.');
-    let integerPart = parts[0];
-    let decimalPart = parts[1] || '';
-
-    if (currentValue.endsWith('.')) {
-        if (decimalPart.length === 0) {
-            decimalPart = '';
-        }
-    }
-
-    if (integerPart.length + decimalPart.length > maxLength) {
-        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
-        if (decimalPart) {
-            const availableLengthForDecimal = maxLength - integerPart.length;
-            decimalPart = decimalPart.slice(0, availableLengthForDecimal);
-            inputElement.value = `${integerPart}.${decimalPart}`;
-        } else {
-            inputElement.value = integerPart.slice(0, maxLength);
-        }
-        return;
-    } else {
-        errorMessage.textContent = '';
-    }
-
-    if (decimalPart) {
-        const availableLengthForDecimal = maxLength - integerPart.length;
-        decimalPart = decimalPart.slice(0, availableLengthForDecimal);
-        inputElement.value = `${integerPart}.${decimalPart}`;
-    } else {
-        inputElement.value = integerPart.slice(0, maxLength);
-    }
-
-    if (currentValue.includes('.') && decimalPart === '') {
-        inputElement.value = integerPart + '.';
-    }
-}*/
-
-function validateDoubleInput(inputElement, errorElementId, maxLength) {
+/*function validateDoubleInput(inputElement, errorElementId, maxLength) {
     const errorMessage = document.getElementById(errorElementId);
     const currentValue = inputElement.value;
 
@@ -299,4 +248,61 @@ function validateDoubleInput(inputElement, errorElementId, maxLength) {
     }
 
     errorMessage.textContent = '';
+}*/
+
+
+function validateDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Clear previous error messages
+    errorMessage.textContent = '';
+
+    // Remove invalid characters (keep digits and a single decimal point)
+    currentValue = currentValue.replace(/[^0-9.]/g, '');
+    
+    // Check for multiple decimal points
+    const decimalCount = (currentValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        const parts = currentValue.split('.');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Check if input exceeds maximum length
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+
+        // Trim to the allowed length
+        const allowedLength = maxLength - integerPart.length;
+        decimalPart = decimalPart.slice(0, allowedLength);
+    }
+
+    // Update the input value
+    if (decimalPart) {
+        inputElement.value = `${integerPart}.${decimalPart}`;
+    } else {
+        inputElement.value = integerPart;
+    }
+
+    // Final input value
+    console.log("Validated Input Value:", inputElement.value);
 }
+
+
+
+
+
+
+
+

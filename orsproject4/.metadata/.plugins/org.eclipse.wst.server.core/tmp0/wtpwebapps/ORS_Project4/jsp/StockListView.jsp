@@ -19,6 +19,7 @@
 
 <script src="<%=ORSView.APP_CONTEXT%>/js/jquery.min.js"></script>
 <script src="<%=ORSView.APP_CONTEXT%>/js/Checkbox11.js"></script>
+<script src="<%=ORSView.APP_CONTEXT%>/js/Utilities.js"></script>
 
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script>
@@ -26,7 +27,7 @@
 		$("#udate").datepicker({
 			changeMonth : true,
 			changeYear : true,
-			yearRange : '1980:2002',
+			yearRange : '2020:2026',
 		//  mindefaultDate : "01-01-1962"
 		});
 	});
@@ -44,7 +45,7 @@
 		<center>
 
 			<div align="center">
-				<h1>Stock List</h1>
+				<h1>Stock Purchase List</h1>
 				<h3>
 					<font color="red"><%=ServletUtility.getErrorMessage(request)%></font>
 					<font color="limegreen"><%=ServletUtility.getSuccessMessage(request)%></font>
@@ -56,11 +57,11 @@
 				List tlist = (List) request.getAttribute("Quantities");
 
 				int next = DataUtility.getInt(request.getAttribute("nextlist").toString());
-				
-				
 			%>
-			
-			<% Map map = (Map) request.getAttribute("stock"); %>
+
+			<%
+				Map map = (Map) request.getAttribute("stock");
+			%>
 
 
 			<%
@@ -74,23 +75,25 @@
 				if (list.size() != 0) {
 			%>
 			<table width="100%" align="center">
-			   <input type="hidden" name="id" value="<%=bean.getId()%>">
-				<tr>
-				     <th></th>
-					<td align="center">
-				     &emsp; <label>Quantity</font> :
-					</label> <%=HTMLUtility.getList("ids", DataUtility.getStringData(bean.getQuantity()),tlist )%>
-				
-				
-					<label>Purchase Price</font> :
-					</label> <input type="text" name="purchasePrice" placeholder="Enter Purchase Price"
-						value="<%=ServletUtility.getParameter("PurchasePrice", request)%>">
+				<tr> 
+					<th></th>
+					<td align="center">&emsp; <label>Quantity</font> :
+					</label> <%=HTMLUtility.getList("id", ServletUtility.getParameter("quantity", request), tlist)%>
 
+
+						<label>Purchase Price</font> :
+					</label> <input type="text" name="purchasePrice"
+						placeholder="Enter Purchase Price"
+						oninput=" handleDoubleInput(this, 'purchasePriceError', 8)"
+						id="purchasePriceError"
 						
+						value="<%=ServletUtility.getParameter("purchasePrice", request)%>">
+
+
 						&nbsp; <label>OrderType</font> :
-					</label><%=HTMLUtility.getList2("orderType", DataUtility.getStringData(bean.getOrderType()), map)%>
-						
-						
+					</label><%=HTMLUtility.getList2("orderType", String.valueOf(bean.getOrderType()), map)%>
+
+
 
 
 						&nbsp; <input type="submit" name="operation"
@@ -121,7 +124,7 @@
 
 
 				<tr align="center">
-			<%--<td><%=map.get(Integer.parseInt(bean.getImportance()))%></td> --%>
+					<%--<td><%=map.get(Integer.parseInt(bean.getImportance()))%></td> --%>
 					<td><input type="checkbox" class="checkbox" name="ids"
 						value="<%=bean.getId()%>"></td>
 					<td><%=index++%></td>
@@ -129,7 +132,7 @@
 					<td><%=bean.getPurchasePrice()%></td>
 					<td><%=bean.getPurchaseDate()%></td>
 					<td><%=map.get(bean.getOrderType())%></td>
-					
+
 					<td><a href="StockCtl?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>
 				<%

@@ -62,7 +62,8 @@
                     
 				 	&nbsp;
                  	<label>City :</label> 
-    	             <input type="text" name="city" placeholder="Enter City Name" Size= "25" value="<%=ServletUtility.getParameter("city", request)%>">
+                 	<%=HTMLUtility.getList("ids", String.valueOf(bean.getCity()), clist) %>
+    	           <%--   <input type="text" name="city" placeholder="Enter City Name" Size= "25" value="<%=ServletUtility.getParameter("city", request)%>"> --%>
                     &nbsp;    
         	         <input type="submit" name="operation" value="<%=CollegeListCtl.OP_SEARCH%>">
         	         &nbsp;

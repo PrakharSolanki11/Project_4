@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<%=ORSView.APP_CONTEXT%>/js/Utilities.js"></script>
+<script src="<%=ORSView.APP_CONTEXT%>/js/Validate.js"></script>
+
 <script>
 	$(function() {
 		$("#udatee").datepicker({
@@ -29,6 +32,12 @@
 			yearRange : '2024:2026',
 		});
 	});
+	
+	 function limitInputLength(input, maxLength) {
+			if (input.value.length > maxLength) {
+				input.value = input.value.slice(0, maxLength);
+			}
+		} 
 </script>
 
 </head>
@@ -83,9 +92,11 @@
 						:
 					</th>
 					<td><textarea type="text" name="discription"
-						placeholder="Enter Discription"  style="height:34; width:219 ;"
-						><%=DataUtility.getStringData(bean.getDiscription())%></textarea></td>
-					<td style="position: fixed"><font color="red"><%=ServletUtility.getErrorMessage("discription", request)%></font></td>
+							oninput=" handleLetterInput(this, 'discriptionError', 15)"
+							onblur=" validateLetterInput(this, 'discriptionError', 15)"
+							placeholder="Enter Discription" style="height: 34; width: 219;"><%=DataUtility.getStringData(bean.getDiscription())%></textarea></td>
+					<td style="position: fixed"><font color="red"
+						id="discriptionError"><%=ServletUtility.getErrorMessage("discription", request)%></font></td>
 
 				</tr>
 
@@ -98,9 +109,8 @@
 					</th>
 					<td>
 						<%
-						String hlist = HTMLUtility.getList2("mode", DataUtility.getStringData(bean.getMode()),map);
-						%> 
-						<%=hlist%>
+							String hlist = HTMLUtility.getList2("mode", DataUtility.getStringData(bean.getMode()), map);
+						%> <%=hlist%>
 					</td>
 					<td style="position: fixed"><font color="red"> <%=ServletUtility.getErrorMessage("mode", request)%></font></td>
 				</tr>
@@ -110,12 +120,10 @@
 				</tr>
 
 				<tr>
-					<th align="left">Date <span style="color: red">*</span>
-						:
+					<th align="left">Date <span style="color: red">*</span> :
 					</th>
-					<td><input type="text" name="date"
-						placeholder="Enter Date" size="26" readonly="readonly"
-						id="udatee"
+					<td><input type="text" name="date" placeholder="Enter Date"
+						size="26" readonly="readonly" id="udatee"
 						value="<%=DataUtility.getDateString(bean.getDate())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("date", request)%></font></td>
 				</tr>
@@ -123,19 +131,20 @@
 				<tr>
 					<th style="padding: 3px"></th>
 				</tr>
-				
-					<tr>
-					<th align="left">Cost<span style="color: red">*</span>
-						:
+
+				<tr>
+					<th align="left">Cost<span style="color: red">*</span> :
 					</th>
-					<td><input type="text" name="cost"
-						placeholder="Enter Cost" size="26"
-						value="<%=(DataUtility.getStringData(bean.getCost()).equals("0")?"" : bean.getCost())%>"></td>
+					<td><input type="text" name="cost" placeholder="Enter Cost"
+						size="26"
+						value="<%=(DataUtility.getStringData(bean.getCost()).equals("0") ? "" : bean.getCost())%>"></td>
 					<td style="position: fixed"><font color="red"><%=ServletUtility.getErrorMessage("cost", request)%></font></td>
 
 				</tr>
-				
 
+				<tr>
+					<th style="padding: 3px"></th>
+				</tr>
 
 
 				<tr>
@@ -153,8 +162,8 @@
 					%>
 
 					<td colspan="2">&nbsp; &emsp; <input type="submit"
-						name="operation" value="<%=TransportationCtl.OP_SAVE%>"> &nbsp;
-						&nbsp; <input type="submit" name="operation"
+						name="operation" value="<%=TransportationCtl.OP_SAVE%>">
+						&nbsp; &nbsp; <input type="submit" name="operation"
 						value="<%=TransportationCtl.OP_RESET%>"></td>
 
 					<%

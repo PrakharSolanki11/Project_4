@@ -68,6 +68,8 @@ public class HTMLUtility {
         {
         	sb.append("<option style='width: 219px;  height: 30px;' selected value=''>------------------Select------------------</option>");
         }
+        
+        System.out.println("this is getlist method for list========== "+ selectedVal );
 
         
         List<DropdownListBean> dd = (List<DropdownListBean>)list;
@@ -84,9 +86,10 @@ public class HTMLUtility {
             System.out.println("this is key=="+key+"  this is val=="+val);
 
             if (key.trim().equals(selectedVal)) {
-            	sb.append("<option selected value='" + val + "'>" + key + "</option>");
+                sb.append("<option selected value='" + key + "'>" + val
+                        + "</option>");
             } else {
-                sb.append("<option value='"+ key.trim() +"'>" + val + "</option>");
+                sb.append("<option value='" + key + "'>" + val + "</option>");
             }
         }
         sb.append("</select>");	        

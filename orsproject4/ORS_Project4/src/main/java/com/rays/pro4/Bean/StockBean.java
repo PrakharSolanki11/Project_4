@@ -6,7 +6,7 @@ public class StockBean extends BaseBean{
 	
 	
 	private int quantity;
-	private float purchasePrice;
+	private double purchasePrice;
 	private Date purchaseDate;
 	private int orderType;
 
@@ -18,11 +18,11 @@ public class StockBean extends BaseBean{
 		this.quantity = quantity;
 	}
 
-	public float getPurchasePrice() {
+	public double getPurchasePrice() {
 		return purchasePrice;
 	}
 
-	public void setPurchasePrice(float purchasePrice) {
+	public void setPurchasePrice(double purchasePrice) {
 		this.purchasePrice = purchasePrice;
 	}
 

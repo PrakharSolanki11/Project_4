@@ -78,6 +78,15 @@ public class DataUtility {
 			return 0;
 		}
 	}
+	
+	
+	public static double getDouble(String val) {
+		if (DataValidator.isFloat(val)) {
+			return Double.parseDouble(val);
+		} else {
+			return 0;
+		}
+	}
 
 	/**
 	 * Converts String into Long
@@ -184,9 +193,9 @@ public class DataUtility {
 		System.out.println(getInt("124"));
 	}
 
-	public static Double getDouble(String parameter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * public static Double getDouble(String parameter) { // TODO Auto-generated
+	 * method stub return null; }
+	 */
 
 }

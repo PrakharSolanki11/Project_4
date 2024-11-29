@@ -47,7 +47,7 @@
 	<%@ include file="Header.jsp"%>
 
 
-	<center>
+	<div align="center">
 
 		<form action="<%=ORSView.TRANSPORTATION_CTL%>" method="post">
 
@@ -92,8 +92,8 @@
 						:
 					</th>
 					<td><textarea type="text" name="discription"
-							oninput=" handleLetterInput(this, 'discriptionError', 10)"
-							onblur=" validateLetterInput(this, 'discriptionError', 10)"
+							oninput=" handleLetterInput(this, 'discriptionError', 15)"
+							onblur=" validateLetterInput(this, 'discriptionError', 15)"
 							placeholder="Enter Discription" style="height: 34; width: 219;"><%=DataUtility.getStringData(bean.getDiscription())%></textarea></td>
 					<td style="position: fixed"><font color="red"
 						id="discriptionError"><%=ServletUtility.getErrorMessage("discription", request)%></font></td>
@@ -172,7 +172,7 @@
 				</tr>
 			</table>
 		</form>
-	</center>
+	</div>
 
 	<%@ include file="Footer.jsp"%>
 </body>

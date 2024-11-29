@@ -77,7 +77,7 @@ public class StockCtl extends BaseCtl {
 		if (DataValidator.isNull(request.getParameter("purchasePrice"))) {
 			request.setAttribute("purchasePrice", PropertyReader.getValue("error.require", "Purchase Price"));
 			pass = false;
-		} else if (!DataValidator.isInteger(request.getParameter("purchasePrice"))) {
+		} else if (!DataValidator.isFloat(request.getParameter("purchasePrice"))) {
 			request.setAttribute("purchasePrice", "Purchase Price contains numerical vlaue only");
 			pass = false;
 		}
@@ -92,9 +92,10 @@ public class StockCtl extends BaseCtl {
 
 		Map<Integer, String> map = new HashMap();
 
-		map.put(1, "High");
-		map.put(2, "Medium");
-		map.put(3, "Low");
+		map.put(1, "Market Order");
+		map.put(2, "Limit Order");
+		map.put(3, "Stop loss Order");
+		map.put(4, "Stop Order");
 
 		request.setAttribute("stock", map);
 
@@ -124,7 +125,7 @@ public class StockCtl extends BaseCtl {
 
 		bean.setPurchaseDate(DataUtility.getDate(request.getParameter("purchaseDate")));
 
-		bean.setPurchasePrice(DataUtility.getFloat(request.getParameter("purchasePrice")));
+		bean.setPurchasePrice(DataUtility.getDouble(request.getParameter("purchasePrice")));
 
 		log.debug("StockCtl Method populatebean Ended");
 

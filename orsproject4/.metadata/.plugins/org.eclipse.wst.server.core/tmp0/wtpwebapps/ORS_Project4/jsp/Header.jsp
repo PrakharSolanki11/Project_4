@@ -61,7 +61,8 @@
 					href="<%=ORSView.MY_PROFILE_CTL%>">MyProfile</b></a> | <a
 					href="<%=ORSView.CHANGE_PASSWORD_CTL%>">Change Password</b></a> | <a
 					href="<%=ORSView.GET_MARKSHEET_CTL%>">Get Marksheet</b></a> | <a
-					href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>">Marksheet MeritList</b>
+					href="<%=ORSView.MARKSHEET_MERIT_LIST_CTL%>">Marksheet
+						MeritList</b>
 				</a> | <%
 					if (userBean.getRoleId() == RoleBean.ADMIN) {
 				%> <a href="<%=ORSView.MARKSHEET_CTL%>">Add Marksheet</b></a> | <a
@@ -81,42 +82,12 @@
 					href="<%=ORSView.FACULTY_CTL%>">Add Faculty</b></a> | <a
 					href="<%=ORSView.FACULTY_LIST_CTL%>">Faculty List</b></a> | <a
 					href="<%=ORSView.TIMETABLE_CTL%>">Add TimeTable</b></a> | <a
-					href="<%=ORSView.TIMETABLE_LIST_CTL%>">TimeTable List</b></a> | <%-- <a
-					href="<%=ORSView.PRODUCT_CTL%>">Add Product</b></a> | <a
-					href="<%=ORSView.PRODUCT_LIST_CTL%>">Product List</b></a> | --%> 
+					href="<%=ORSView.TIMETABLE_LIST_CTL%>">TimeTable List</b></a> | <a
 					
-					<a href="<%=ORSView.CUSTOMER_CTL%>">Add Customer</b></a> | 
-					<a href="<%=ORSView.CUSTOMER_LIST_CTL%>">Customer List    </b></a> | 
+					href="<%=ORSView.STOCK_CTL%>">Add Stock</b></a> | <a
+					href="<%=ORSView.STOCK_LIST_CTL%>">Stock List</b></a> | <a
 					
-					<a href="<%=ORSView.FOLLOWUP_CTL%>">Add Followup</b></a> | 
-					<a href="<%=ORSView.FOLLOWUP_LIST_CTL%>">Followup List</b></a> | 
-					
-					<a href="<%=ORSView.TRANSPORTATION_CTL%>">Add Transportation</b></a> | 
-					<a href="<%=ORSView.TRANSPORTATION_LIST_CTL%>">Transportation List</b></a> | 
-					
-					<a href="<%=ORSView.FAVOURITE_CTL%>">Add FavouriteList</b></a> | 
-					<a href="<%=ORSView.FAVOURITE_LIST_CTL%>">Favourite List</b></a> | 
-					
-					<a href="<%=ORSView.ITEM_CTL%>">Add Item</b></a> | 
-					<a href="<%=ORSView.ITEM_LIST_CTL%>">Item List</b></a> | 
-					
-					<a href="<%=ORSView.CART_CTL%>">Add Cart</b></a> | 
-					<a href="<%=ORSView.CART_LIST_CTL%>">Cart List</b></a> | 
-					
-					<a href="<%=ORSView.STAFF_CTL%>">Add Staff</b></a> | 
-					<a href="<%=ORSView.STAFF_LIST_CTL%>">Staff List</b></a> | 
-					
-					<a href="<%=ORSView.INVENTORY_CTL%>">Add Inventory</b></a> | 
-					<a href="<%=ORSView.INVENTORY_LIST_CTL%>">Inventory List</b></a> | 
-					
-					<a href="<%=ORSView.STOCK_CTL%>">Add Stock</b></a> | 
-					<a href="<%=ORSView.STOCK_LIST_CTL%>">Stock List</b></a> | 
-					
-					<a href="<%=ORSView.DOCTOR_CTL%>">Add Doctor</b></a> | 
-					<a href="<%=ORSView.DOCTOR_LIST_CTL%>">Doctor List</b></a> | 
-					
-					
-					 <a target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
+					target="blank" href="<%=ORSView.JAVA_DOC_VIEW%>">Java Doc</b></a> <%
  	}
  %> <%
  	if (userBean.getRoleId() == RoleBean.STUDENT) {

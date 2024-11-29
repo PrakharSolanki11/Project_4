@@ -96,7 +96,7 @@ public class StockModel {
 
 			pstmt.setLong(1, pk);
 			pstmt.setInt(2, bean.getQuantity());
-			pstmt.setFloat(3, bean.getPurchasePrice());
+			pstmt.setDouble(3, bean.getPurchasePrice());
 			pstmt.setDate(4, new java.sql.Date(bean.getPurchaseDate().getTime()));
 			pstmt.setInt(5, bean.getOrderType());
 
@@ -179,7 +179,7 @@ public class StockModel {
 				bean = new StockBean();
 				bean.setId(rs.getLong(1));
 				bean.setQuantity(rs.getInt(2));
-				bean.setPurchasePrice(rs.getFloat(3));
+				bean.setPurchasePrice(rs.getDouble(3));
 				bean.setPurchaseDate(rs.getDate(4));
 				bean.setOrderType(rs.getInt(5));
 
@@ -214,7 +214,7 @@ public class StockModel {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 
 			pstmt.setInt(1, bean.getQuantity());
-			pstmt.setFloat(2, bean.getPurchasePrice());
+			pstmt.setDouble(2, bean.getPurchasePrice());
 			pstmt.setDate(3, new java.sql.Date(bean.getPurchaseDate().getTime()));
             pstmt.setInt(4, bean.getOrderType());
 			pstmt.setLong(5, bean.getId());
@@ -285,7 +285,7 @@ public class StockModel {
 			}
 			
 			if (bean.getOrderType() > 0) {
-				sql.append(" AND Order_Type = " + bean.getOrderType());
+				sql.append(" AND ORDER_TYPE = " + bean.getOrderType());
 			}
 			
 			
@@ -310,7 +310,7 @@ public class StockModel {
 				bean = new StockBean();
 				bean.setId(rs.getLong(1));
 				bean.setQuantity(rs.getInt(2));
-				bean.setPurchasePrice(rs.getFloat(3));
+				bean.setPurchasePrice(rs.getDouble(3));
 				bean.setPurchaseDate(rs.getDate(4));
 				bean.setOrderType(rs.getInt(5));
 
@@ -371,7 +371,7 @@ public class StockModel {
 
 				bean.setId(rs.getLong(1));
 				bean.setQuantity(rs.getInt(2));
-				bean.setPurchasePrice(rs.getFloat(3));
+				bean.setPurchasePrice(rs.getDouble(3));
 				bean.setPurchaseDate(rs.getDate(4));
 				bean.setOrderType(rs.getInt(5));
 
