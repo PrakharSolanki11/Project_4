@@ -1,0 +1,478 @@
+
+function handleIntegerInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    if (isNaN(currentValue) || /[^0-9]/.test(currentValue)) {
+        errorMessage.textContent = 'Only numbers are allowed.';
+        inputElement.value = currentValue.replace(/\D/g, '');
+    } else {
+        if (currentValue.length > maxLength) {
+            errorMessage.textContent = `Only ${maxLength} digits are allowed.`;
+            inputElement.value = currentValue.slice(0, maxLength);
+        } else {
+            errorMessage.textContent = '';
+        }
+    }
+    inputElement.value = inputElement.value.replace(/^0+(?=\d)/, '').slice(0, maxLength);
+}
+
+
+function processNumber(num) {
+    if (typeof num === 'number' && !isNaN(num)) {
+        return `${num} is a number.`;
+    } else {
+        throw new TypeError("Only numbers (int and float) are allowed.");
+    }
+}
+
+
+function validateAlphanumericInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    // Check for maximum length
+    if (currentValue.length > maxLength) {
+        errorMessage.textContent = 'Input must not exceed ' + maxLength + ' characters.';
+    } 
+    // Check for alphanumeric characters only
+    else if (!/^[a-zA-Z0-9]*$/.test(currentValue)) {
+        errorMessage.textContent = 'Input must be alphanumeric only.';
+    } 
+    // Clear error message if input is valid
+    else {
+        errorMessage.textContent = '';
+    }
+}
+
+
+
+function validateIntegerInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    if (!isNaN(currentValue) && currentValue.length <= maxLength) {
+        errorMessage.textContent = '';
+    }
+}
+
+function handleLetterInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+    // Allow letters, spaces, and dots, but not at the beginning
+    const allowedPattern = /^[a-zA-Z][a-zA-Z\s.]*$/;
+    // Check if the first character is a letter
+    if (currentValue.length > 0 && !/^[a-zA-Z]/.test(currentValue[0])) {
+        errorMessage.textContent = 'Only letter are allowed';
+        currentValue = currentValue.replace(/^[^a-zA-Z]+/, '');
+    } else if (!allowedPattern.test(currentValue)) {
+        errorMessage.textContent = 'Only letters are allowed.';
+        currentValue = currentValue.replace(/[^a-zA-Z\s.]/g, '');
+    } else {
+        if (currentValue.length > maxLength) {
+            errorMessage.textContent = `Only ${maxLength} characters are allowed.`;
+            currentValue = currentValue.slice(0, maxLength);
+        } else {
+            errorMessage.textContent = '';
+        }
+    }
+
+    inputElement.value = currentValue.slice(0, maxLength);
+}
+ 
+function validateLetterInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    if (/^[a-zA-Z]+$/.test(currentValue) && currentValue.length <= maxLength) {
+        errorMessage.textContent = '';
+    }
+}
+
+function initializeDatePicker(datePickerId, errorElementId, dateFormat = 'mm/dd/yy') {
+    if (!$(`#${datePickerId}`).length) {
+        return;
+    }
+
+    $(function() {
+        $(`#${datePickerId}`).datepicker({
+            dateFormat: dateFormat,
+            onSelect: function() {
+                clearErrorMessage(errorElementId);
+            }
+        });
+    });
+}
+
+function setupDropdownListener(dropdownName, errorElementId) {
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                const dropdowns = document.getElementsByTagName("select");
+
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].name === dropdownName && !dropdowns[i].dataset.listenerAdded) {
+                        dropdowns[i].dataset.listenerAdded = 'true';
+                        dropdowns[i].addEventListener("change", function() {
+                            clearErrorMessage(errorElementId);
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function clearErrorMessage(errorElementId) {
+    const errorElement = document.getElementById(errorElementId);
+    if (errorElement) {
+        errorElement.innerText = '';
+    }
+}
+
+function handleMobileNumberInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value.trim();
+
+    if (isNaN(currentValue) || /[^0-9]/.test(currentValue)) {
+        errorMessage.textContent = 'Please enter only numbers.';
+        inputElement.value = currentValue.replace(/\D/g, '');
+    } else {
+        if (currentValue.length > maxLength) {
+            errorMessage.textContent = `Maximum ${maxLength} digits allowed.`;
+            inputElement.value = currentValue.slice(0, maxLength);
+        } else {
+            if (currentValue.length > 0 && currentValue.charAt(0) <= '5') {
+                errorMessage.textContent = 'Mobile number must start with a digit greater than 5.';
+                inputElement.value = '';
+            } else {
+                errorMessage.textContent = '';
+            }
+        }
+    }
+}
+
+
+
+/*function handleDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Clear the error message initially
+    errorMessage.textContent = '';
+
+    // Check for invalid characters
+    if (/[^0-9.]/.test(currentValue)) {
+        errorMessage.textContent = 'Only numbers and a single decimal point are allowed.';
+        // Remove invalid characters (allow only digits and one decimal point)
+        currentValue = currentValue.replace(/[^0-9.]/g, '');
+    }
+
+    // Ensure only one decimal point exists
+    const decimalCount = (currentValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        const parts = currentValue.split('.');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Limit decimal places to 2
+    if (decimalPart.length > 2) {
+        errorMessage.textContent = 'Only 2 decimal places are allowed.';
+        decimalPart = decimalPart.slice(0, 2);
+    }
+
+    // Enforce maximum length constraint (integer + decimal combined)
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+
+        // Trim integer and/or decimal parts as needed
+        const allowedDecimalLength = Math.max(0, maxLength - integerPart.length);
+        decimalPart = decimalPart.slice(0, allowedDecimalLength);
+        integerPart = integerPart.slice(0, maxLength - decimalPart.length);
+    }
+
+    // Update the input element's value
+    if (decimalPart) {
+        inputElement.value = `${integerPart}.${decimalPart}`;
+    } else {
+        inputElement.value = integerPart;
+    }
+}====================
+*/
+
+/*function handleDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Clear the error message initially
+    errorMessage.textContent = '';
+
+    // Remove invalid characters (allow only digits and a single decimal point)
+    const validValue = currentValue.replace(/[^0-9.]/g, '');
+    if (validValue !== currentValue) {
+        errorMessage.textContent = 'Only numbers and a single decimal point are allowed.';
+        currentValue = validValue;
+    }
+
+    // Ensure only one decimal point exists
+    const decimalCount = (currentValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        const parts = currentValue.split('.');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Limit decimal places to 2
+    if (decimalPart.length > 2) {
+        errorMessage.textContent = 'Only 2 decimal places are allowed.';
+        decimalPart = decimalPart.slice(0, 2);
+    }
+
+    // Enforce maximum length constraint (integer + decimal combined)
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+
+        // Trim integer and/or decimal parts as needed
+        const allowedDecimalLength = Math.max(0, maxLength - integerPart.length);
+        decimalPart = decimalPart.slice(0, allowedDecimalLength);
+        integerPart = integerPart.slice(0, maxLength - decimalPart.length);
+    }
+
+    // Update the input element's value
+    if (decimalPart) {
+        inputElement.value = `${integerPart}.${decimalPart}`;
+    } else {
+        inputElement.value = integerPart;
+    }
+}
+*/
+
+
+function handleDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Clear the error message initially
+    errorMessage.textContent = '';
+
+    // Remove invalid characters (allow only digits and a single decimal point)
+    let validValue = currentValue.replace(/[^0-9.]/g, '');
+    if (validValue !== currentValue) {
+        errorMessage.textContent = 'Only numbers and a single decimal point are allowed.';
+        currentValue = validValue;
+    }
+
+    // Ensure only one decimal point exists
+    const decimalCount = (currentValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        const parts = currentValue.split('.');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros properly
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Allow a standalone decimal point for in-progress typing
+    if (currentValue === '.' || (currentValue.startsWith('.') && decimalPart === '')) {
+        inputElement.value = currentValue;
+        return;
+    }
+
+    // Limit decimal places to 2
+    if (decimalPart.length > 2) {
+        errorMessage.textContent = 'Only 2 decimal places are allowed.';
+        decimalPart = decimalPart.slice(0, 2);
+    }
+
+    // Enforce maximum length constraint (integer + decimal combined)
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+
+        // Trim integer and/or decimal parts as needed
+        const allowedDecimalLength = Math.max(0, maxLength - integerPart.length);
+        decimalPart = decimalPart.slice(0, allowedDecimalLength);
+        integerPart = integerPart.slice(0, maxLength - decimalPart.length);
+    }
+
+    // Update the input element's value
+    if (decimalPart) {
+        inputElement.value = `${integerPart}.${decimalPart}`;
+    } else {
+        inputElement.value = integerPart;
+    }
+}
+
+
+
+
+
+
+
+/*function validateDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    errorMessage.textContent = '';
+
+    if (isNaN(currentValue) || /[^0-9.]/.test(currentValue)) {
+        errorMessage.textContent = 'Only numbers and a single decimal point are allowed.';
+        return;
+    }
+
+    if ((currentValue.match(/\./g) || []).length > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        return;
+    }
+
+    const parts = currentValue.split('.');
+    const integerPart = parts[0];
+    const decimalPart = parts[1] || '';
+
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+        return;
+    }
+
+    errorMessage.textContent = '';
+}*/
+
+
+function validateDoubleInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Clear previous error messages
+    errorMessage.textContent = '';
+
+    // Remove invalid characters (keep digits and a single decimal point)
+    currentValue = currentValue.replace(/[^0-9.]/g, '');
+    
+    // Check for multiple decimal points
+    const decimalCount = (currentValue.match(/\./g) || []).length;
+    if (decimalCount > 1) {
+        errorMessage.textContent = 'Only one decimal point is allowed.';
+        const parts = currentValue.split('.');
+        currentValue = parts[0] + '.' + parts.slice(1).join('');
+    }
+
+    // Handle leading zeros
+    if (currentValue.startsWith('0') && !currentValue.startsWith('0.')) {
+        currentValue = currentValue.replace(/^0+/, '') || '0';
+    }
+
+    // Split into integer and decimal parts
+    const parts = currentValue.split('.');
+    let integerPart = parts[0];
+    let decimalPart = parts[1] || '';
+
+    // Check if input exceeds maximum length
+    if (integerPart.length + decimalPart.length > maxLength) {
+        errorMessage.textContent = `Input exceeds the maximum length of ${maxLength} digits.`;
+
+        // Trim to the allowed length
+        const allowedLength = maxLength - integerPart.length;
+        decimalPart = decimalPart.slice(0, allowedLength);
+    }
+
+    // Update the input value
+    if (decimalPart) {
+        inputElement.value = `${integerPart}.${decimalPart}`;
+    } else {
+        inputElement.value = integerPart;
+    }
+
+    // Final input value
+    console.log("Validated Input Value:", inputElement.value);
+}
+
+
+
+function validateFloatInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    const currentValue = inputElement.value;
+
+    // Regular expression to match valid float numbers (including negatives)
+    const floatRegex = /^-?\d*\.?\d*$/;
+
+    if (floatRegex.test(currentValue) && currentValue.length <= maxLength) {
+        errorMessage.textContent = '';
+    } else {
+        errorMessage.textContent = `Please enter a valid float number with a maximum length of ${maxLength}.`;
+    }
+}
+
+
+
+
+
+function handleFloatInput(inputElement, errorElementId, maxLength) {
+    const errorMessage = document.getElementById(errorElementId);
+    let currentValue = inputElement.value;
+
+    // Regex to allow valid float numbers, including optional '-' and '.'
+    const floatRegex = /^-?\d*\.?\d*$/;
+
+    // Check if the input is valid
+    if (!floatRegex.test(currentValue)) {
+        errorMessage.textContent = 'Only valid floating-point numbers are allowed.';
+        // Remove invalid characters
+        currentValue = currentValue.replace(/[^0-9.-]/g, '');
+        // Fix multiple dots or misplaced '-' signs
+        const parts = currentValue.split('.');
+        if (parts.length > 2) {
+            currentValue = parts[0] + '.' + parts.slice(1).join('');
+        }
+        if (currentValue.indexOf('-') > 0) {
+            currentValue = currentValue.replace('-', '');
+        }
+    }
+
+    // Enforce max length, excluding invalid characters
+    if (currentValue.length > maxLength) {
+        errorMessage.textContent = `Only ${maxLength} characters are allowed.`;
+        currentValue = currentValue.slice(0, maxLength);
+    } else {
+        errorMessage.textContent = '';
+    }
+
+    // Remove leading zeroes unless the number is a valid float like '0.5'
+    if (!currentValue.startsWith('0.') && currentValue.startsWith('0')) {
+        currentValue = currentValue.replace(/^0+(?=\d)/, '');
+    }
+
+    // Update the input value to reflect validated content
+    inputElement.value = currentValue;
+}
+
+
